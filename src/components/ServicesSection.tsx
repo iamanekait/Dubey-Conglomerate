@@ -217,7 +217,7 @@ export default function ServicesSection({ onOpenBooking }: ServicesProps) {
                     layoutId={`service-${service.id}`}
                   >
                     <TiltCard
-                      className="backdrop-blur-md bg-white/5 rounded-3xl border border-white/10 p-6 sm:p-8 hover:bg-[#D4AF37]/5 transition-all duration-300 relative overflow-hidden shadow-xl h-full flex flex-col justify-between"
+                      className="backdrop-blur-md bg-white/5 rounded-3xl border border-white/10 p-6 sm:p-8 hover:bg-[#D4AF37]/5 transition-colors duration-300 relative overflow-hidden shadow-xl h-full flex flex-col justify-between"
                     >
                       {/* Subtle top decoration band */}
                       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#D4AF37] to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity" />

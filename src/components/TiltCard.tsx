@@ -58,6 +58,11 @@ export default function TiltCard({ children, className = "", ...props }: TiltCar
         rotateY: rotateY,
         transformPerspective: 1000,
       }}
+      whileHover={{
+        scale: 1.025,
+        borderColor: 'rgba(212, 175, 55, 0.4)',
+        boxShadow: '0 20px 40px -15px rgba(212, 175, 55, 0.35)',
+      }}
       transition={{ type: 'spring', stiffness: 300, damping: 20, mass: 0.6 }}
       style={{
         transformStyle: 'preserve-3d',

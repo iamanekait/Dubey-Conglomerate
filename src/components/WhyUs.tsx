@@ -113,6 +113,12 @@ export default function WhyUs() {
           {/* Big Featured Brand Manifesto Box */}
           <motion.div 
             variants={cardVariants}
+            whileHover={{ 
+              scale: 1.025,
+              borderColor: 'rgba(212, 175, 55, 0.4)',
+              boxShadow: '0 20px 40px -15px rgba(212, 175, 55, 0.35)',
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             className="p-8 backdrop-blur-md bg-[#D4AF37]/5 text-white flex flex-col justify-between border border-[#D4AF37]/15 rounded-3xl shadow-xl relative overflow-hidden md:col-span-2 lg:col-span-1"
           >
             <div className="absolute top-0 right-0 w-44 h-44 bg-[#D4AF37]/5 rounded-full filter blur-xl" />
@@ -144,7 +150,13 @@ export default function WhyUs() {
               <motion.div
                 key={diff.title}
                 variants={cardVariants}
-                className="backdrop-blur-md bg-white/5 p-6 sm:p-8 rounded-3xl border border-white/10 hover:border-[#D4AF37]/30 hover:bg-[#D4AF37]/5 hover:scale-[1.02] transition-all duration-300 shadow-xl flex flex-col justify-between"
+                whileHover={{ 
+                  scale: 1.025,
+                  borderColor: 'rgba(212, 175, 55, 0.4)',
+                  boxShadow: '0 20px 40px -15px rgba(212, 175, 55, 0.35)',
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className="backdrop-blur-md bg-white/5 p-6 sm:p-8 rounded-3xl border border-white/10 hover:bg-[#D4AF37]/5 transition-colors duration-300 shadow-xl flex flex-col justify-between"
               >
                 <div className="space-y-4">
                   {/* Badge & Icon Area */}
