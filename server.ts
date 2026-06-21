@@ -83,7 +83,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS;
 
-    const destinations = "aniketdubey.2012@gmail.com, aniketdueby.2012@gmail.com";
+    const destinations = "aniketdubey.2012@gmail.com";
     console.log(`[Email System] Preparing to dispatch notification: "${subject}" to ${destinations}`);
 
     if (!user || !pass) {
@@ -122,7 +122,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
     }
   }
 
-  // API Route for submitting booking/inquiry forms and sending email coordinates to aniketdubey.2012@gmail.com and aniketdueby.2012@gmail.com
+  // API Route for submitting booking/inquiry forms and sending email coordinates to aniketdubey.2012@gmail.com
   app.post("/api/submit-form", async (req, res) => {
     try {
       const { formType, payload } = req.body;

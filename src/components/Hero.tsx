@@ -186,7 +186,14 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
         </div>
 
         {/* Counter Widget Section (As required: Client success metrics/counters) */}
-        <div id="metrics-block" className="mt-20 pt-10 border-t border-white/10">
+        <motion.div 
+          id="metrics-block"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-20 pt-10 border-t border-white/10"
+        >
           <div className="text-center mb-10">
             <span className="text-xs font-mono uppercase tracking-widest text-[#D4AF37] font-bold block mb-1">
               FINANCIAL TELEMETRY & SCALE
@@ -196,9 +203,13 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {METRICS.map((metric) => (
-              <div
+            {METRICS.map((metric, idx) => (
+              <motion.div
                 key={metric.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col justify-between hover:bg-[#D4AF37]/5 transition-colors duration-300 shadow-xl group"
               >
                 <div>
@@ -214,10 +225,10 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
                 <p className="text-xs text-white/60 leading-relaxed mt-2 border-t border-white/15 pt-3 font-light">
                   {metric.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

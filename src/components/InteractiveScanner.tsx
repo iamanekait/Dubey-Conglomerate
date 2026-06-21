@@ -19,6 +19,7 @@ import {
   CheckCircle2,
   ExternalLink
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { DIAGNOSTIC_QUESTIONS } from '../data';
 
 interface ScannerProps {
@@ -327,7 +328,13 @@ export default function InteractiveScanner({ onOpenBooking }: ScannerProps) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Title */}
-        <div className="text-center space-y-3 mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center space-y-3 mb-12"
+        >
           <span className="inline-block backdrop-blur-md bg-white/5 border border-white/10 text-[#D4AF37] text-[10px] font-mono uppercase tracking-[0.2em] px-4 py-1.5 rounded-full font-bold">
             INTELLIGENT BUSINESS CALIBRATOR
           </span>
@@ -337,11 +344,17 @@ export default function InteractiveScanner({ onOpenBooking }: ScannerProps) {
           <p className="text-sm text-white/70 max-w-2xl mx-auto font-light leading-relaxed">
             Diagnose your server/marketing velocity and operational health using Google Lighthouse, followed by Dubey Conglomerate's core tactical advisory calibration.
           </p>
-        </div>
+        </motion.div>
 
         {/* Step Indicator Progress Bar */}
         {typeof step === 'number' && (
-          <div className="mb-10 max-w-sm mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 max-w-sm mx-auto"
+          >
             <div className="flex justify-between items-center text-[10px] font-mono text-white/50 uppercase mb-2">
               <span>Step {step} of 3</span>
               <span>{step === 1 ? 'Domain & Identity' : step === 2 ? 'Friction Profiling' : 'Operational Scale'}</span>
@@ -352,11 +365,18 @@ export default function InteractiveScanner({ onOpenBooking }: ScannerProps) {
                 style={{ width: `${(step / 3) * 100}%` }}
               />
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* Main Scanner Container Panel */}
-        <div id="diagnostic-main-container" className="backdrop-blur-xl bg-white/10 p-6 sm:p-10 rounded-3xl border border-white/20 shadow-2xl relative glass-panel-glow">
+        <motion.div 
+          id="diagnostic-main-container"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="backdrop-blur-xl bg-white/10 p-6 sm:p-10 rounded-3xl border border-white/20 shadow-2xl relative glass-panel-glow"
+        >
           
           {/* STEP 1: Basic Profile */}
           {step === 1 && (
@@ -754,7 +774,7 @@ export default function InteractiveScanner({ onOpenBooking }: ScannerProps) {
             </div>
           )}
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
