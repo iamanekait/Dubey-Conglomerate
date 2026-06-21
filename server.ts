@@ -83,12 +83,13 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS;
 
-    console.log(`[Email System] Preparing to dispatch notification: "${subject}" to aniketdubey.2012@gmail.com`);
+    const destinations = "aniketdubey.2012@gmail.com, aniketdueby.2012@gmail.com";
+    console.log(`[Email System] Preparing to dispatch notification: "${subject}" to ${destinations}`);
 
     if (!user || !pass) {
       console.log(`[Email System][SIMULATION MODE] No SMTP_USER or SMTP_PASS configured in settings secrets. Outputting email details to logs.`);
       console.log("------------------- LOGGED EMAIL OUTBOX -------------------");
-      console.log(`Destination: aniketdubey.2012@gmail.com`);
+      console.log(`Destination: ${destinations}`);
       console.log(`Subject: ${subject}`);
       console.log(`Payload Text-Content:\n${htmlContent.replace(/<[^>]*>/g, "\n").replace(/\n+/g, "\n").trim()}`);
       console.log("-----------------------------------------------------------");
@@ -108,7 +109,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
 
       const info = await transporter.sendMail({
         from: `"Dubey Conglomerate Secure" <${user}>`,
-        to: "aniketdubey.2012@gmail.com",
+        to: destinations,
         subject,
         html: htmlContent,
       });
@@ -121,7 +122,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
     }
   }
 
-  // API Route for submitting booking/inquiry forms and sending email coordinates to aniketdubey.2012@gmail.com
+  // API Route for submitting booking/inquiry forms and sending email coordinates to aniketdubey.2012@gmail.com and aniketdueby.2012@gmail.com
   app.post("/api/submit-form", async (req, res) => {
     try {
       const { formType, payload } = req.body;
