@@ -80,13 +80,17 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
   async function sendEmailNotification(subject: string, htmlContent: string) {
     const host = process.env.SMTP_HOST || "smtp.gmail.com";
     const port = parseInt(process.env.SMTP_PORT || "587");
-    const user = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
+    const userStr = process.env.SMTP_USER ? String(process.env.SMTP_USER).trim() : "";
+    const passStr = process.env.SMTP_PASS ? String(process.env.SMTP_PASS).trim() : "";
 
     const destinations = "aniketdubey.2012@gmail.com";
     console.log(`[Email System] Preparing to dispatch notification: "${subject}" to ${destinations}`);
 
-    if (!user || !pass) {
+    const hasSMTP = userStr && passStr && 
+                    userStr !== "undefined" && userStr !== "null" && 
+                    passStr !== "undefined" && passStr !== "null";
+
+    if (!hasSMTP) {
       console.log(`[Email System][SIMULATION MODE] No SMTP_USER or SMTP_PASS configured in settings secrets. Outputting email details to logs.`);
       console.log("------------------- LOGGED EMAIL OUTBOX -------------------");
       console.log(`Destination: ${destinations}`);
@@ -102,13 +106,13 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
         port,
         secure: port === 465,
         auth: {
-          user,
-          pass,
+          user: userStr,
+          pass: passStr,
         },
       });
 
       const info = await transporter.sendMail({
-        from: `"Dubey Conglomerate Secure" <${user}>`,
+        from: `"Dubey Conglomerate Secure" <${userStr}>`,
         to: destinations,
         subject,
         html: htmlContent,
@@ -118,7 +122,13 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
       return { simulated: false, messageId: info.messageId };
     } catch (error: any) {
       console.error("[Email System][CRITICAL] Failed to dispatch via SMTP transport:", error);
-      throw error;
+      console.log(`[Email System][SIMULATION FALLBACK] Outputting log contents due to SMTP failure:`);
+      console.log("------------------- FALLBACK EMAIL OUTBOX -------------------");
+      console.log(`Destination: ${destinations}`);
+      console.log(`Subject: ${subject}`);
+      console.log(`Payload Text-Content:\n${htmlContent.replace(/<[^>]*>/g, "\n").replace(/\n+/g, "\n").trim()}`);
+      console.log("-------------------------------------------------------------");
+      return { simulated: true, error: error?.message || String(error) };
     }
   }
 
