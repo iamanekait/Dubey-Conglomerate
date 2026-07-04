@@ -428,7 +428,16 @@ export default function ContactSection() {
                   </button>
                   <a
                     href="#navbar"
-                    className="py-2.5 px-5 rounded-full bg-[#D4AF37] hover:scale-105 hover:bg-[#D4AF37]/90 text-[#050B18] font-bold text-xs uppercase tracking-widest transition-all inline-block"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector('#home');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    className="py-2.5 px-5 rounded-full bg-[#D4AF37] hover:scale-105 hover:bg-[#D4AF37]/90 text-[#050B18] font-bold text-xs uppercase tracking-widest transition-all inline-block cursor-pointer"
                   >
                     Return Top
                   </a>
