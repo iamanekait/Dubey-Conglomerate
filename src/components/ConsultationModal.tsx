@@ -65,15 +65,19 @@ export default function ConsultationModal({
       }
 
       // Save under Local Storage inquiries
-      const savedBookings = JSON.parse(localStorage.getItem('dc_consultations') || '[]');
-      const newBooking = {
-        id: `booking-${Date.now()}`,
-        ...formData,
-        status: 'confirmed',
-        timestamp: new Date().toISOString()
-      };
-      savedBookings.push(newBooking);
-      localStorage.setItem('dc_consultations', JSON.stringify(savedBookings));
+      try {
+        const savedBookings = JSON.parse(localStorage.getItem('dc_consultations') || '[]');
+        const newBooking = {
+          id: `booking-${Date.now()}`,
+          ...formData,
+          status: 'confirmed',
+          timestamp: new Date().toISOString()
+        };
+        savedBookings.push(newBooking);
+        localStorage.setItem('dc_consultations', JSON.stringify(savedBookings));
+      } catch (storageErr) {
+        console.warn('[Storage] Local storage is disabled or blocked in this context:', storageErr);
+      }
       
       setIsSuccess(true);
     } catch (err: any) {

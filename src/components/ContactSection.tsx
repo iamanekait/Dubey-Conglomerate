@@ -83,13 +83,17 @@ export default function ContactSection() {
 
         setIsSubmitted(true);
         // Store submission locally as a historical validation proof
-        const currentLeads = JSON.parse(localStorage.getItem('dc_inquiries') || '[]');
-        currentLeads.push({
-          id: `lead-${Date.now()}`,
-          ...formData,
-          timestamp: new Date().toISOString()
-        });
-        localStorage.setItem('dc_inquiries', JSON.stringify(currentLeads));
+        try {
+          const currentLeads = JSON.parse(localStorage.getItem('dc_inquiries') || '[]');
+          currentLeads.push({
+            id: `lead-${Date.now()}`,
+            ...formData,
+            timestamp: new Date().toISOString()
+          });
+          localStorage.setItem('dc_inquiries', JSON.stringify(currentLeads));
+        } catch (storageErr) {
+          console.warn('[Storage] Local storage is disabled or blocked in this context:', storageErr);
+        }
       } catch (err: any) {
         console.error(err);
         setSubmitError('An error occurred while establishing transmission pipeline. Please retry.');

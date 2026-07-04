@@ -41,8 +41,12 @@ export default function Footer({ onOpenBooking, onOpenAssessment }: FooterProps)
 
   const clearBookings = () => {
     if (window.confirm('Do you want to wipe local consultation records from this browser cache?')) {
-      localStorage.removeItem('dc_consultations');
-      localStorage.removeItem('dc_inquiries');
+      try {
+        localStorage.removeItem('dc_consultations');
+        localStorage.removeItem('dc_inquiries');
+      } catch (storageErr) {
+        console.warn('[Storage] Local storage is disabled or blocked in this context:', storageErr);
+      }
       setLocalBookings([]);
       setLocalLeads([]);
     }
