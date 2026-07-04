@@ -48,21 +48,30 @@ export default function ConsultationModal({
     setErrorMsg('');
 
     try {
-      // Dispatches the booking metadata over SMTP and stores on regional logs
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          formType: 'booking',
-          payload: formData,
-        }),
-      });
+      const mailSubject = encodeURIComponent(`[DC scheduler] New Booking Request - ${formData.company || 'General'}`);
+      const mailBody = encodeURIComponent(`Hello,
 
-      if (!response.ok) {
-        throw new Error('Failed to dispatch digital dossier pipeline.');
-      }
+Here are the details from the Consultation Booking request:
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'N/A'}
+Company: ${formData.company || 'N/A'}
+Service Interested: ${formData.service}
+Preferred Date: ${formData.date}
+Preferred Time Slot: ${formData.timeSlot}
+
+Additional Notes:
+${formData.notes || 'None'}
+
+---
+Submitted via Digital Counsel Scheduler Interface on: ${new Date().toLocaleString()}
+`);
+
+      const mailtoUrl = `mailto:dubeyaniket.2012@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+      
+      // Open the local mail client
+      window.location.href = mailtoUrl;
 
       // Save under Local Storage inquiries
       try {
@@ -82,7 +91,7 @@ export default function ConsultationModal({
       setIsSuccess(true);
     } catch (err: any) {
       console.error(err);
-      setErrorMsg('An error occurred during transmittal. Please check server connections and retry.');
+      setErrorMsg('An error occurred while launching your mail client. Please retry.');
     } finally {
       setIsSubmitting(false);
     }
