@@ -66,27 +66,20 @@ export default function ContactSection() {
       setSubmitError('');
 
       try {
-        const mailSubject = encodeURIComponent(`[DC dossier] New Intake Inquiry - ${formData.company || 'General'}`);
-        const mailBody = encodeURIComponent(`Hello,
+        const response = await fetch('/api/submit-form', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            formType: 'inquiry',
+            payload: formData,
+          }),
+        });
 
-Here are the details from the Intake Dossier submission:
-
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone || 'N/A'}
-Company: ${formData.company || 'N/A'}
-
-Message/Inquiry:
-${formData.message}
-
----
-Submitted via Digital Counsel Dossier Interface on: ${new Date().toLocaleString()}
-`);
-
-        const mailtoUrl = `mailto:dubeyaniket.2012@gmail.com?subject=${mailSubject}&body=${mailBody}`;
-        
-        // Open the local mail client
-        window.location.href = mailtoUrl;
+        if (!response.ok) {
+          throw new Error('Failed to transmit central inquiry files.');
+        }
 
         setIsSubmitted(true);
         // Store submission locally as a historical validation proof
@@ -103,7 +96,7 @@ Submitted via Digital Counsel Dossier Interface on: ${new Date().toLocaleString(
         }
       } catch (err: any) {
         console.error(err);
-        setSubmitError('An error occurred while launching your mail client. Please retry.');
+        setSubmitError('An error occurred while establishing transmission pipeline. Please retry.');
       } finally {
         setIsSubmitting(false);
       }

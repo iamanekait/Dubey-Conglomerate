@@ -13,6 +13,7 @@ import ScrollToTop from './components/ScrollToTop';
 import AdvisoryChatbot from './components/AdvisoryChatbot';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import Preloader from './components/Preloader';
+import ScrollFadeSection from './components/ScrollFadeSection';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -71,26 +72,38 @@ export default function App() {
         />
 
         {/* Section 2: Detailed Service Offerings Directory */}
-        <ServicesSection 
-          onOpenBooking={(serviceName) => handleOpenBooking(serviceName)} 
-        />
+        <ScrollFadeSection>
+          <ServicesSection 
+            onOpenBooking={(serviceName) => handleOpenBooking(serviceName)} 
+          />
+        </ScrollFadeSection>
 
         {/* Section 3: Corporate Narrative legacy & Core Values */}
-        <About />
+        <ScrollFadeSection>
+          <About />
+        </ScrollFadeSection>
 
         {/* Section 4: Interactive Risk & Strategy Diagnostics Calibration */}
-        <InteractiveScanner 
-          onOpenBooking={(service, notes) => handleOpenBooking(service, notes)} 
-        />
+        <ScrollFadeSection>
+          <InteractiveScanner 
+            onOpenBooking={(service, notes) => handleOpenBooking(service, notes)} 
+          />
+        </ScrollFadeSection>
 
         {/* Section 5: Bento Differentiators */}
-        <WhyUs />
+        <ScrollFadeSection>
+          <WhyUs />
+        </ScrollFadeSection>
 
         {/* Section 6: Star Rated Endorsements */}
-        <Testimonials />
+        <ScrollFadeSection>
+          <Testimonials />
+        </ScrollFadeSection>
 
         {/* Section 7: Encrypted Lead Intake Portal */}
-        <ContactSection />
+        <ScrollFadeSection>
+          <ContactSection />
+        </ScrollFadeSection>
 
       </main>
 
