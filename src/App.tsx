@@ -21,9 +21,16 @@ export default function App() {
   const [presetNotes, setPresetNotes] = useState('');
 
   const handleOpenBooking = (serviceName: string = '', notes: string = '') => {
-    setPreselectedService(serviceName);
-    setPresetNotes(notes);
-    setIsBookingOpen(true);
+    // Redirect directly to the Zoom scheduler URL
+    const zoomUrl = 'https://scheduler.zoom.us/aniketdubey/consultation';
+    try {
+      const win = window.open(zoomUrl, '_blank');
+      if (!win) {
+        window.location.href = zoomUrl;
+      }
+    } catch (e) {
+      window.location.href = zoomUrl;
+    }
   };
 
   const handleOpenAssessment = () => {

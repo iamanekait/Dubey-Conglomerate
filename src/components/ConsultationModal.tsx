@@ -98,10 +98,10 @@ export default function ConsultationModal({
 
   return (
     <div className="fixed inset-0 bg-[#050B18]/70 backdrop-blur-md flex items-center justify-center p-4 z-50 overflow-y-auto">
-      <div className="backdrop-blur-2xl bg-[#0b1220]/90 border border-white/20 w-full max-w-xl overflow-hidden shadow-2xl rounded-3xl relative my-8 animate-in fade-in zoom-in-95 duration-200">
+      <div className="backdrop-blur-2xl bg-[#0b1220]/90 border border-white/20 w-full max-w-xl max-h-[92vh] sm:max-h-[85vh] flex flex-col overflow-hidden shadow-2xl rounded-3xl relative my-auto animate-in fade-in zoom-in-95 duration-200">
         
         {/* Modal Header */}
-        <div className="bg-white/5 px-6 py-4 flex items-center justify-between text-white border-b border-white/10">
+        <div className="bg-white/5 px-6 py-4 flex items-center justify-between text-white border-b border-white/10 flex-shrink-0">
           <div className="flex items-center space-x-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37]"></span>
             <span className="font-display font-bold text-xs uppercase tracking-widest text-[#D4AF37]">
@@ -119,7 +119,7 @@ export default function ConsultationModal({
 
         {!isSuccess ? (
           /* Main Interactive Scheduler Form */
-          <form onSubmit={handleFormSubmit} className="p-6 sm:p-8 space-y-4">
+          <form onSubmit={handleFormSubmit} className="p-6 sm:p-8 space-y-4 overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-white/10">
             
             <div className="text-center sm:text-left">
               <h3 className="font-display font-bold text-lg text-white">
@@ -311,7 +311,7 @@ export default function ConsultationModal({
           </form>
         ) : (
           /* Successful Appointment State */
-          <div className="p-8 text-center space-y-6 animate-in fade-in duration-300">
+          <div className="p-8 text-center space-y-6 animate-in fade-in duration-300 overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-white/10">
             <div className="w-14 h-14 bg-[#D4AF37]/10 rounded-full flex items-center justify-center border-2 border-[#D4AF37] mx-auto animate-bounce">
               <CheckCircle className="w-7 h-7 text-[#D4AF37]" />
             </div>
