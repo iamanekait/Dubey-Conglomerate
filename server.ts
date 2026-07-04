@@ -77,13 +77,13 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
   });
 
   // Helper utility to dispatch premium styled email updates regarding inquiries and schedulers
-  async function sendEmailNotification(subject: string, htmlContent: string) {
+  async function sendEmailNotification(subject: string, htmlContent: string, destination?: string) {
     const host = process.env.SMTP_HOST || "smtp.gmail.com";
     const port = parseInt(process.env.SMTP_PORT || "587");
     const userStr = process.env.SMTP_USER ? String(process.env.SMTP_USER).trim() : "";
     const passStr = process.env.SMTP_PASS ? String(process.env.SMTP_PASS).trim() : "";
 
-    const destinations = "aniketdubey.2012@gmail.com";
+    const destinations = destination || "aniketdubey.2012@gmail.com";
     console.log(`[Email System] Preparing to dispatch notification: "${subject}" to ${destinations}`);
 
     const hasSMTP = userStr && passStr && 
@@ -132,7 +132,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
     }
   }
 
-  // API Route for submitting booking/inquiry forms and sending email coordinates to aniketdubey.2012@gmail.com
+  // API Route for submitting booking/inquiry forms and sending email coordinates to designated targets
   app.post("/api/submit-form", async (req, res) => {
     try {
       const body = req.body || {};
@@ -143,10 +143,12 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
 
       let subject = "";
       let htmlContent = "";
+      let destination = "aniketdubey.2012@gmail.com";
 
       if (formType === "booking") {
         const { name, email, phone, company, service, date, timeSlot, notes } = payload;
         subject = `[DC scheduler] New Booking Alert: ${company || "General"} (${name || "Anonymous"})`;
+        destination = "aniketdubey.2012@gmail.com";
         htmlContent = `
           <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #050B18; color: #ffffff; padding: 30px; border-radius: 16px; border: 1px solid #D4AF37;">
             <div style="text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 20px; margin-bottom: 25px;">
@@ -202,6 +204,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
       } else {
         const { name, email, phone, company, message } = payload;
         subject = `[DC dossier] New Central Registry Inquiry: ${company || "General"}`;
+        destination = "dubeyaniket.2012@gmail.com";
         htmlContent = `
           <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #050B18; color: #ffffff; padding: 30px; border-radius: 16px; border: 1px solid #D4AF37;">
             <div style="text-align: center; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 20px; margin-bottom: 25px;">
@@ -244,7 +247,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
         `;
       }
 
-      const emailStatus = await sendEmailNotification(subject, htmlContent);
+      const emailStatus = await sendEmailNotification(subject, htmlContent, destination);
       res.json({ success: true, ...emailStatus });
     } catch (e: any) {
       console.error("[Form Receiver Error - Handled Gracefully]", e);
