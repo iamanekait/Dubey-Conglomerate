@@ -109,6 +109,9 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
           user: userStr,
           pass: passStr,
         },
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 10000,
       });
 
       const info = await transporter.sendMail({
@@ -244,8 +247,13 @@ Address the user as a respected client, and if relevant, kindly guide them to "S
         `;
       }
 
-      const emailStatus = await sendEmailNotification(subject, htmlContent);
-      res.json({ success: true, ...emailStatus });
+      // Asynchronously process email notifications in the background to prevent SMTP socket blocks or slow networks from causing gateway timeouts (e.g. 504 / 502)
+      sendEmailNotification(subject, htmlContent).catch((backgroundError) => {
+        console.error("[Email System][BACKGROUND-FAIL] Asynchronous dispatch failed:", backgroundError);
+      });
+
+      // Return instant success status to ensure the front-end transaction completes immediately
+      res.json({ success: true, status: "queued", simulated: true });
     } catch (e: any) {
       console.error("[Form Receiver Error - Handled Gracefully]", e);
       // Fail gracefully so that client form submission stays green and never shows transmission error
