@@ -4,7 +4,7 @@ import { METRICS } from '../data';
 
 interface HeroProps {
   onOpenBooking: () => void;
-  onOpenAssessment: () => void;
+  onOpenAssessment?: () => void;
 }
 
 export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
@@ -48,10 +48,10 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
           
           {/* Main Hero Copystack */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="space-y-8 flex flex-col items-center">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4"
+              className="space-y-4 flex flex-col items-center"
             >
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
                 Strategic Consulting for
@@ -88,7 +88,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 pt-2 w-full max-w-md sm:max-w-none"
             >
               <button
                 onClick={onOpenBooking}
@@ -111,7 +111,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="grid grid-cols-3 gap-4 pt-6 border-t border-corp-navy-800 max-w-lg"
+              className="grid grid-cols-3 gap-6 pt-6 border-t border-corp-navy-800 w-full max-w-lg justify-items-center"
             >
               <div className="flex items-center space-x-2">
                 <ShieldCheck className="w-4 h-4 text-corp-gold-400 flex-shrink-0" />
@@ -124,62 +124,6 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               <div className="flex items-center space-x-2">
                 <Trophy className="w-4 h-4 text-corp-gold-400 flex-shrink-0" />
                 <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-300">98% Success</span>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Interactive Premium Container Frame */}
-          <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="backdrop-blur-xl bg-white/10 border border-white/20 p-6 sm:p-8 rounded-2xl relative shadow-2xl overflow-hidden glass-panel-glow"
-            >
-              {/* Highlight Corner Brackets */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-corp-gold-500" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-corp-gold-500" />
-
-              <div className="space-y-6">
-                <div className="flex justify-between items-center pb-4 border-b border-white/10">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="text-xs font-mono font-semibold tracking-wider text-emerald-400">OPERATIONAL INTEL</span>
-                  </div>
-                  <span className="text-[10px] font-mono text-white/50">DURGAPUR HQ Desk</span>
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="font-display text-lg font-bold text-corp-gold-300">
-                    Why Local Businesses Choose Dubey Conglomerate
-                  </h3>
-                  <p className="text-xs text-white/80 leading-relaxed">
-                    We combine empirical advisory patterns with local tactical execution. Our consultants are familiar 
-                    with the ground economics of Benachity, Asansol, Raniganj and the wider Durgapur industrial zone.
-                  </p>
-                </div>
-
-                {/* Micro Calculator / Inline CTA widget */}
-                <div className="p-4 backdrop-blur-md bg-white/5 rounded-xl border border-white/10 space-y-3">
-                  <span className="text-[10px] font-mono uppercase text-corp-gold-400 tracking-wider font-bold">
-                    Quick Assessment Portal
-                  </span>
-                  <p className="text-xs text-white/70">
-                    Uncover systemic flaws in your cash flow and organizational tree. Spend 2 minutes running our digital scan.
-                  </p>
-                  <button
-                    onClick={onOpenAssessment}
-                    className="w-full py-2.5 bg-corp-gold-500 text-corp-navy-950 rounded-lg hover:scale-105 active:scale-95 text-[10px] font-mono uppercase tracking-widest font-bold transition-all cursor-pointer"
-                  >
-                    Launch Calibration Scanner
-                  </button>
-                </div>
-
-                <div className="pt-2">
-                  <span className="block text-[10px] font-mono uppercase tracking-wider text-white/40 text-center">
-                    Authorized and Insured advisory bureau
-                  </span>
-                </div>
               </div>
             </motion.div>
           </div>
