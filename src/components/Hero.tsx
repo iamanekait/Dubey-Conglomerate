@@ -2,10 +2,38 @@ import { ArrowRight, BarChart3, ShieldCheck, Trophy, Sparkles } from 'lucide-rea
 import { motion, useScroll, useTransform } from 'motion/react';
 import { METRICS } from '../data';
 
+const heroBg = 'https://owky9a9x58ejfh0u.public.blob.vercel-storage.com/DC%20Intro.mp4';
+
 interface HeroProps {
   onOpenBooking: () => void;
   onOpenAssessment?: () => void;
 }
+
+// Staggered Reveal Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 90,
+      damping: 18,
+      duration: 0.8
+    }
+  }
+};
 
 export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
   const { scrollY } = useScroll();
@@ -28,6 +56,30 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
       id="home"
       className="relative min-h-screen pt-24 lg:pt-32 pb-16 flex flex-col justify-center bg-corp-navy-950 text-white overflow-hidden"
     >
+      {/* Immersive Background Media (Supporting video & image) */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+        {heroBg.includes('.mp4') ? (
+          <video
+            src={heroBg}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover object-center opacity-60"
+          />
+        ) : (
+          <img
+            src={heroBg}
+            alt="Premium corporate consulting backdrop"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover object-center opacity-35"
+          />
+        )}
+        {/* Soft atmospheric gradients and vignettes */}
+        <div className="absolute inset-0 bg-gradient-to-b from-corp-navy-950/80 via-corp-navy-950/60 to-corp-navy-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(5,11,24,0.3)_0%,#050b18_85%)]" />
+      </div>
+
       {/* Decorative Grid Mesh Background with subtle parallax */}
       <motion.div 
         style={{ y: gridY }}
@@ -48,14 +100,17 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow flex flex-col justify-center">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8 animate-fade-in">
           
           {/* Main Hero Copystack */}
-          <div className="space-y-8 flex flex-col items-center">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-8 flex flex-col items-center w-full"
+          >
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              variants={itemVariants}
               className="inline-flex items-center space-x-2 bg-corp-navy-900 border border-corp-gold-500/20 px-3.5 py-1.5 rounded-full"
             >
               <Sparkles className="w-3.5 h-3.5 text-corp-gold-400" />
@@ -65,9 +120,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              variants={itemVariants}
               className="space-y-4 flex flex-col items-center"
             >
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
@@ -85,9 +138,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
 
             {/* CTA Option Clusters */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={itemVariants}
               className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 pt-2 w-full max-w-md sm:max-w-none"
             >
               <button
@@ -108,9 +159,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
 
             {/* Strategic Value Pillars Badge */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              variants={itemVariants}
               className="grid grid-cols-3 gap-6 pt-6 border-t border-corp-navy-800 w-full max-w-lg justify-items-center"
             >
               <div className="flex items-center space-x-2">
@@ -126,8 +175,8 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
                 <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-300">98% Success</span>
               </div>
             </motion.div>
+          </motion.div>
           </div>
-        </div>
 
         {/* Counter Widget Section (As required: Client success metrics/counters) */}
         <motion.div 
