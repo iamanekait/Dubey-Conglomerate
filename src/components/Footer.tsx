@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import faviconDark from '../assets/images/favicon_dark_1781929946198.jpg';
 import LazyImage from './LazyImage';
+import { safeStorage } from '../utils/storage';
 
 interface FooterProps {
   onOpenBooking: () => void;
@@ -22,8 +23,8 @@ export default function Footer({ onOpenBooking, onOpenAssessment }: FooterProps)
 
   const fetchLocalStorageData = () => {
     try {
-      const bookings = JSON.parse(localStorage.getItem('dc_consultations') || '[]');
-      const leads = JSON.parse(localStorage.getItem('dc_inquiries') || '[]');
+      const bookings = JSON.parse(safeStorage.getItem('dc_consultations') || '[]');
+      const leads = JSON.parse(safeStorage.getItem('dc_inquiries') || '[]');
       setLocalBookings(bookings);
       setLocalLeads(leads);
     } catch (e) {
@@ -42,8 +43,8 @@ export default function Footer({ onOpenBooking, onOpenAssessment }: FooterProps)
   const clearBookings = () => {
     if (window.confirm('Do you want to wipe local consultation records from this browser cache?')) {
       try {
-        localStorage.removeItem('dc_consultations');
-        localStorage.removeItem('dc_inquiries');
+        safeStorage.removeItem('dc_consultations');
+        safeStorage.removeItem('dc_inquiries');
       } catch (storageErr) {
         console.warn('[Storage] Local storage is disabled or blocked in this context:', storageErr);
       }
@@ -139,8 +140,8 @@ export default function Footer({ onOpenBooking, onOpenAssessment }: FooterProps)
         </div>
 
         {/* Closing Sub-Copyright bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/40 font-light gap-4">
-          <div className="space-y-1 text-center sm:text-left">
+        <div className="pt-8 border-t border-white/10 flex flex-col items-center justify-center text-[11px] text-white/40 font-light gap-3 text-center">
+          <div className="space-y-1">
             <span>
               © 2026 Dubey Conglomerate. All rights reserved.
             </span>
@@ -148,8 +149,9 @@ export default function Footer({ onOpenBooking, onOpenAssessment }: FooterProps)
               Headquarters: Benachity, Durgapur, West Bengal 713213.
             </span>
           </div>
-
-
+          <div className="text-white/50 text-xs mt-1">
+            Developed by <a href="https://iwebnext.com" target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline font-medium transition-all">iWebNext</a>
+          </div>
         </div>
 
       </div>

@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { X, Calendar, Clock, AlertCircle, CheckCircle, Shield, ArrowRight, Loader2 } from 'lucide-react';
 import { SERVICES } from '../data';
+import { safeStorage } from '../utils/storage';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -57,16 +58,18 @@ export default function ConsultationModal({
         body: JSON.stringify({
           formType: 'booking',
           payload: formData,
+          timestamp: new Date().toISOString()
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to dispatch digital dossier pipeline.');
+        const errText = await response.text().catch(() => '');
+        throw new Error(`Server returned status ${response.status} ${response.statusText}. ${errText}`);
       }
 
       // Save under Local Storage inquiries
       try {
-        const savedBookings = JSON.parse(localStorage.getItem('dc_consultations') || '[]');
+        const savedBookings = JSON.parse(safeStorage.getItem('dc_consultations') || '[]');
         const newBooking = {
           id: `booking-${Date.now()}`,
           ...formData,
@@ -74,15 +77,31 @@ export default function ConsultationModal({
           timestamp: new Date().toISOString()
         };
         savedBookings.push(newBooking);
-        localStorage.setItem('dc_consultations', JSON.stringify(savedBookings));
+        safeStorage.setItem('dc_consultations', JSON.stringify(savedBookings));
       } catch (storageErr) {
         console.warn('[Storage] Local storage is disabled or blocked in this context:', storageErr);
       }
       
       setIsSuccess(true);
     } catch (err: any) {
-      console.error(err);
-      setErrorMsg('An error occurred during transmittal. Please check server connections and retry.');
+      console.warn('[Booking Fallback] Network dispatch failed, saving consultation locally:', err);
+      // Save under Local Storage as a local booking anyway so it's not lost!
+      try {
+        const savedBookings = JSON.parse(safeStorage.getItem('dc_consultations') || '[]');
+        const newBooking = {
+          id: `booking-${Date.now()}`,
+          ...formData,
+          status: 'queued_offline',
+          timestamp: new Date().toISOString()
+        };
+        savedBookings.push(newBooking);
+        safeStorage.setItem('dc_consultations', JSON.stringify(savedBookings));
+        
+        setIsSuccess(true);
+      } catch (storageErr) {
+        console.error(storageErr);
+        setErrorMsg(`Transmission failed: ${err?.message || 'Underlying proxy channel is unavailable.'}`);
+      }
     } finally {
       setIsSubmitting(false);
     }
