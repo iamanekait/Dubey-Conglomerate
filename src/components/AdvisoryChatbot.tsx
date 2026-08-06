@@ -31,7 +31,7 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Welcome to Dubey Conglomerate. I am your Executive AI Ambassador. How may I assist with your corporate restructuring, working capital optimizations, or tactical growth strategies today?",
+      content: "Welcome to Dubey Conglomerate. I am your Executive AI Ambassador. How may I assist with your Strategy, Experience Design (CX/UX), Cloud Engineering, Data Analytics, or Enterprise AI transformation today?",
       timestamp: new Date()
     }
   ]);
@@ -101,14 +101,14 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
 
   const startQuickAction = (topic: string) => {
     let prompt = '';
-    if (topic === 'capital') {
-      prompt = "How can Dubey Conglomerate help optimize my company's working capital cycle?";
-    } else if (topic === 'ebitda') {
-      prompt = "What strategies do you recommend for rapid EBITDA expansion?";
-    } else if (topic === 'digital') {
-      prompt = "Tell me about your custom Digital Transformation and SOP automation sprint.";
-    } else if (topic === 'legacy') {
-      prompt = "What is the mission of Dubey Conglomerate and Mr. Aniket Dubey?";
+    if (topic === 'strategy') {
+      prompt = "How does Dubey Conglomerate integrate Strategy and Experience Design (CX/UX)?";
+    } else if (topic === 'tech') {
+      prompt = "What is your approach to Full-Stack Technology Engineering & Cloud Modernization?";
+    } else if (topic === 'data') {
+      prompt = "Tell me about your Customer Data Platforms and Predictive Telemetry solutions.";
+    } else if (topic === 'ai') {
+      prompt = "How can we deploy Generative AI and Agentic Workflows in our enterprise?";
     }
     handleSendMessage(prompt);
   };
@@ -275,28 +275,28 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
                 {/* Strategy Suggestion Chips */}
                 <div className="p-2 border-t border-white/5 bg-corp-navy-950/30 flex items-center space-x-1.5 overflow-x-auto scrollbar-hide">
                   <button 
-                    onClick={() => startQuickAction('capital')} 
+                    onClick={() => startQuickAction('strategy')} 
                     className="flex-shrink-0 font-mono text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 hover:border-[#D4AF37] hover:bg-[#D4AF37]/5 text-[#D4AF37] rounded-full px-2.5 py-1 text-center transition-all cursor-pointer"
                   >
-                    Working Capital
+                    Strategy & CX
                   </button>
                   <button 
-                    onClick={() => startQuickAction('ebitda')} 
+                    onClick={() => startQuickAction('tech')} 
                     className="flex-shrink-0 font-mono text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 hover:border-[#D4AF37] hover:bg-[#D4AF37]/5 text-[#D4AF37] rounded-full px-2.5 py-1 text-center transition-all cursor-pointer"
                   >
-                    EBITDA Boost
+                    Cloud & Tech
                   </button>
                   <button 
-                    onClick={() => startQuickAction('digital')} 
+                    onClick={() => startQuickAction('data')} 
                     className="flex-shrink-0 font-mono text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 hover:border-[#D4AF37] hover:bg-[#D4AF37]/5 text-[#D4AF37] rounded-full px-2.5 py-1 text-center transition-all cursor-pointer"
                   >
-                    Digital Sprints
+                    Data Platforms
                   </button>
                   <button 
-                    onClick={() => startQuickAction('legacy')} 
+                    onClick={() => startQuickAction('ai')} 
                     className="flex-shrink-0 font-mono text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 hover:border-[#D4AF37] hover:bg-[#D4AF37]/5 text-[#D4AF37] rounded-full px-2.5 py-1 text-center transition-all cursor-pointer"
                   >
-                    Firm Legacy
+                    Enterprise AI
                   </button>
                 </div>
 

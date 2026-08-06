@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, ShieldCheck, Trophy, Sparkles } from 'lucide-react';
+import { ArrowRight, BarChart3, ShieldCheck, Trophy, Sparkles, Compass, Palette, Cpu, Database } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { METRICS } from '../data';
 
@@ -115,7 +115,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
             >
               <Sparkles className="w-3.5 h-3.5 text-corp-gold-400" />
               <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.15em] text-corp-gold-300">
-                Advisory Leadership • Benachity, Durgapur
+                Strategy • Creativity • Tech • Data • AI
               </span>
             </motion.div>
 
@@ -124,15 +124,14 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               className="space-y-4 flex flex-col items-center"
             >
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
-                Strategic Consulting for
+                Fusing Strategy, Creativity,
                 <span className="block mt-2 bg-gradient-to-r from-corp-gold-300 via-corp-gold-400 to-corp-gold-500 bg-clip-text text-transparent">
-                  Sustainable Business Growth
+                  Tech, Data & Enterprise AI
                 </span>
               </h1>
               <p className="text-sm sm:text-base lg:text-lg text-corp-navy-200 font-light max-w-2xl leading-relaxed">
-                Dubey Conglomerate delivers enterprise-grade corporate strategy, process optimization, 
-                and working capital counseling. Based in West Bengal’s industrial heartland, we empower local 
-                and global operators to scale with absolute strategic confidence.
+                Dubey Conglomerate combines high-stakes corporate strategy, human-centered creative design, 
+                full-stack cloud technology, data telemetry, and generative AI to reinvent business models for the future.
               </p>
             </motion.div>
 
@@ -157,22 +156,30 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               </button>
             </motion.div>
 
-            {/* Strategic Value Pillars Badge */}
+            {/* 5 Core Pillars Badge */}
             <motion.div
               variants={itemVariants}
-              className="grid grid-cols-3 gap-6 pt-6 border-t border-corp-navy-800 w-full max-w-lg justify-items-center"
+              className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 pt-6 border-t border-corp-navy-800 w-full max-w-xl"
             >
-              <div className="flex items-center space-x-2">
-                <ShieldCheck className="w-4 h-4 text-corp-gold-400 flex-shrink-0" />
-                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-300">ISO Standards</span>
+              <div className="flex items-center space-x-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                <Compass className="w-3.5 h-3.5 text-corp-gold-400 flex-shrink-0" />
+                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-200">1. Strategy</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <BarChart3 className="w-4 h-4 text-corp-gold-400 flex-shrink-0" />
-                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-300">Data Advised</span>
+              <div className="flex items-center space-x-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                <Palette className="w-3.5 h-3.5 text-corp-gold-400 flex-shrink-0" />
+                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-200">2. Creativity</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Trophy className="w-4 h-4 text-corp-gold-400 flex-shrink-0" />
-                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-300">98% Success</span>
+              <div className="flex items-center space-x-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                <Cpu className="w-3.5 h-3.5 text-corp-gold-400 flex-shrink-0" />
+                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-200">3. Tech</span>
+              </div>
+              <div className="flex items-center space-x-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                <Database className="w-3.5 h-3.5 text-corp-gold-400 flex-shrink-0" />
+                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-200">4. Data</span>
+              </div>
+              <div className="flex items-center space-x-1.5 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                <Sparkles className="w-3.5 h-3.5 text-corp-gold-400 flex-shrink-0" />
+                <span className="text-[10px] uppercase font-mono tracking-wider text-corp-navy-200">5. AI</span>
               </div>
             </motion.div>
           </motion.div>

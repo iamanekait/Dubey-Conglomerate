@@ -1,52 +1,52 @@
 import { 
-  Award, 
-  Settings2, 
-  BarChart, 
-  Network, 
-  CheckSquare,
-  Sparkles
+  Compass, 
+  Palette, 
+  Cpu, 
+  Database, 
+  Sparkles,
+  Award
 } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function WhyUs() {
   const differentiators = [
     {
-      title: 'Industry Expertise',
-      description: 'Led by seasoned partners with cumulative decades of advisory experience across core manufacturing, logistics, finance, and heavy metallurgy sectors in India.',
-      icon: Award,
-      badge: 'Expertise',
+      title: 'Unified 5-Pillar Synergy',
+      description: 'We eliminate organizational silos by seamlessly orchestrating Strategy, Creativity, Tech, Data, and AI into one continuous growth engine.',
+      icon: Compass,
+      badge: 'Strategy',
       color: 'border-[#D4AF37]/20 bg-[#D4AF37]/10',
       iconColor: 'text-[#D4AF37]'
     },
     {
-      title: 'Customized Strategic Blueprints',
-      description: 'We do not sell pre-configured slides. Every process flowchart, cost control SOP, and expansion contract is built specifically for your local tax and resource framework.',
-      icon: Settings2,
-      badge: 'Tailored',
+      title: 'Human-Centered Creative Design',
+      description: 'We design brand experiences, intuitive interfaces, and customer journeys that evoke emotion, build trust, and drive engagement.',
+      icon: Palette,
+      badge: 'Creativity',
       color: 'border-[#D4AF37]/20 bg-[#D4AF37]/10',
       iconColor: 'text-[#D4AF37]'
     },
     {
-      title: 'Data-Driven Decision-Making',
-      description: 'We implement extensive empirical stress-testing. Your business growth decisions are backed directly by deep market demographic variables and microeconomic analysis.',
-      icon: BarChart,
-      badge: 'Empirical',
+      title: 'Full-Stack Digital Engineering',
+      description: 'We build modern cloud architectures, high-performance product studios, and resilient enterprise software built to scale effortlessly.',
+      icon: Cpu,
+      badge: 'Technology',
       color: 'border-[#D4AF37]/20 bg-[#D4AF37]/10',
       iconColor: 'text-[#D4AF37]'
     },
     {
-      title: 'Long-Term Partnership Approach',
-      description: 'We act as your dedicated auxiliary cabinet. We support you through continuous cycles and provide ongoing auditing, preventing post-strategic operational drift.',
-      icon: Network,
-      badge: 'Alignment',
+      title: 'Predictive Data Telemetry',
+      description: 'We turn fragmented customer data into actionable insights through real-time dashboards, CDPs, and predictive behavioral models.',
+      icon: Database,
+      badge: 'Data Intelligence',
       color: 'border-[#D4AF37]/20 bg-[#D4AF37]/10',
       iconColor: 'text-[#D4AF37]'
     },
     {
-      title: 'Results-Oriented Consulting',
-      description: 'We connect our fees with objective client growth. We focus on real-world outcomes — concrete cost reduction, verified EBITDA growth, and robust risk shielding.',
-      icon: CheckSquare,
-      badge: 'Accountable',
+      title: 'Enterprise AI & Autonomous Workflows',
+      description: 'We deploy generative AI models, custom copilots, and intelligent agentic automation to multiply team productivity and eliminate manual friction.',
+      icon: Sparkles,
+      badge: 'Generative AI',
       color: 'border-[#D4AF37]/20 bg-[#D4AF37]/10',
       iconColor: 'text-[#D4AF37]'
     }
@@ -93,11 +93,10 @@ export default function WhyUs() {
           </div>
           
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Setting the Sovereign Standard in Business Counsel
+            Where Business Strategy Meets Creative & Technological Excellence
           </h2>
           <p className="text-sm text-white/60 leading-relaxed font-light">
-            We operate out of Durgapur’s primary business core, providing a class of strategic foresight and 
-            operational risk shielding that standard firm agencies fail to construct.
+            We operate at the forefront of enterprise transformation, delivering integrated consulting across Strategy, Creativity, Tech, Data, and AI.
           </p>
         </motion.div>
 
@@ -125,21 +124,19 @@ export default function WhyUs() {
             
             <div className="space-y-4 font-display">
               <span className="text-[10px] uppercase font-mono tracking-wider text-[#D4AF37] font-bold block">
-                MANAGEMENT PHILOSOPHY
+                INTEGRATED CONSULTING PHILOSOPHY
               </span>
               <h3 className="text-xl sm:text-2xl font-bold leading-tight text-[#D4AF37]">
-                Corporate advisory built strictly around empirical performance parameters.
+                Reinventing how modern enterprises design, engineer, and scale.
               </h3>
               <p className="font-sans text-xs text-white/80 leading-relaxed font-light mt-2">
-                At Dubey Conglomerate, we understand that high-quality recommendations are worthless without 
-                tactical administrative discipline. We don't just draft reports; we guide you through step-by-step 
-                implementation to secure actual economic milestones.
+                By uniting top-tier business strategists, creative designers, software architects, data scientists, and AI engineers, Dubey Conglomerate builds holistic digital transformation engines.
               </p>
             </div>
 
             <div className="pt-8 border-t border-white/10 mt-8 flex justify-between items-center text-[10px] uppercase font-mono text-white/50">
-              <span>EST. BENACHITY, DURGAPUR</span>
-              <span className="text-[#D4AF37] font-bold">★ ISO 9001 STATUS</span>
+              <span>DUBEY CONGLOMERATE</span>
+              <span className="text-[#D4AF37] font-bold">★ GLOBAL STANDARDS</span>
             </div>
           </motion.div>
 
@@ -179,7 +176,7 @@ export default function WhyUs() {
                 
                 {/* Visual Accent footer inside card */}
                 <div className="mt-6 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/40">
-                  <span>AUDITED VALUE</span>
+                  <span>TRANSFORMATION VALUE</span>
                   <span className="text-[#D4AF37] font-bold">100% SECURE</span>
                 </div>
               </motion.div>

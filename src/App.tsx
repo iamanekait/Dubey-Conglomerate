@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ServicesSection from './components/ServicesSection';
+import LifecycleSection from './components/LifecycleSection';
 import About from './components/About';
 import InteractiveScanner from './components/InteractiveScanner';
 import WhyUs from './components/WhyUs';
@@ -78,7 +79,12 @@ export default function App() {
           />
         </ScrollFadeSection>
 
-        {/* Section 3: Corporate Narrative legacy & Core Values */}
+        {/* Section 3: 5-Stage Transformation Lifecycle (Define, Design, Build, Launch, Scale) */}
+        <ScrollFadeSection>
+          <LifecycleSection />
+        </ScrollFadeSection>
+
+        {/* Section 4: Corporate Narrative legacy & Core Values */}
         <ScrollFadeSection>
           <About />
         </ScrollFadeSection>

@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { 
   Compass, 
-  Search, 
+  Palette, 
   Cpu, 
+  Database, 
+  Sparkles, 
+  Rocket, 
+  Search, 
   Globe, 
   Zap, 
   DollarSign, 
@@ -24,8 +28,12 @@ interface ServicesProps {
 
 const iconMap: Record<string, any> = {
   Compass: Compass,
-  SearchCode: Search,
+  Palette: Palette,
   Cpu: Cpu,
+  Database: Database,
+  Sparkles: Sparkles,
+  Rocket: Rocket,
+  SearchCode: Search,
   GlobeIcon: Globe,
   Zap: Zap,
   DollarSign: DollarSign,
@@ -33,7 +41,7 @@ const iconMap: Record<string, any> = {
 
 export default function ServicesSection({ onOpenBooking }: ServicesProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'strategy' | 'operations' | 'finance'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'strategy-creative' | 'tech-data' | 'ai-transformation'>('all');
   const [activeDetailService, setActiveDetailService] = useState<Service | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -47,20 +55,19 @@ export default function ServicesSection({ onOpenBooking }: ServicesProps) {
   }, [searchTerm, selectedCategory]);
 
   // Group services roughly to categorical tags
-  const getCategory = (id: string): 'strategy' | 'operations' | 'finance' => {
+  const getCategory = (id: string): 'strategy-creative' | 'tech-data' | 'ai-transformation' => {
     switch (id) {
-      case 'strategy':
-      case 'growth-expansion':
-        return 'strategy';
-      case 'market-research':
-      case 'startup-advisory':
-        return 'finance'; // startup is grouped in finance/strategy
-      case 'optimization':
-        return 'operations';
-      case 'financial-operational':
-        return 'finance';
+      case 'strategy-transformation':
+      case 'creative-experience':
+        return 'strategy-creative';
+      case 'technology-engineering':
+      case 'data-analytics':
+        return 'tech-data';
+      case 'enterprise-ai':
+      case 'growth-incubation':
+        return 'ai-transformation';
       default:
-        return 'strategy';
+        return 'strategy-creative';
     }
   };
 
@@ -104,33 +111,17 @@ export default function ServicesSection({ onOpenBooking }: ServicesProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+          className="text-center max-w-3xl mx-auto mb-12 space-y-3"
         >
-          <div className="space-y-2 max-w-xl">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#D4AF37] font-bold block">
-              ADVISORY SPECIALTIES
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Corporate Advisories Tailored for Market Domination
-            </h2>
-            <p className="text-sm text-white/60 font-light">
-              We engineer custom procedures across six major high-value advisory operations, built to maximize 
-              long-term liquidity and capture regional market shares.
-            </p>
-          </div>
-
-          {/* Search Input Box */}
-          <div className="relative w-full max-w-xs">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
-            <input
-              type="text"
-              placeholder="Search specialties..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 focus:border-[#D4AF37] focus:outline-none rounded-lg pl-10 pr-4 py-2.5 text-xs text-white placeholder-white/40"
-              aria-label="Search consulting categories"
-            />
-          </div>
+          <span className="text-xs font-mono uppercase tracking-widest text-[#D4AF37] font-bold block">
+            TRANSFORMATION CAPABILITIES
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            End-to-End Capabilities Across Strategy, Creativity, Tech, Data & AI
+          </h2>
+          <p className="text-sm text-white/60 font-light leading-relaxed">
+            We operate at the intersection of business strategy, human-centered experience design, full-stack technology engineering, predictive data platforms, and agentic enterprise AI.
+          </p>
         </motion.div>
 
         {/* Categories Tab Bar */}
@@ -143,9 +134,9 @@ export default function ServicesSection({ onOpenBooking }: ServicesProps) {
         >
           {[
             { id: 'all', label: 'All Portfolios' },
-            { id: 'strategy', label: 'Strategy & Growth' },
-            { id: 'operations', label: 'Operations & Process' },
-            { id: 'finance', label: 'Finance & Incubation' },
+            { id: 'strategy-creative', label: 'Strategy & Creativity' },
+            { id: 'tech-data', label: 'Tech & Data' },
+            { id: 'ai-transformation', label: 'Enterprise AI & Scale' },
           ].map((cat) => (
             <button
               key={cat.id}

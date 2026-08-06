@@ -46,3 +46,13 @@ export interface DiagnosticQuestion {
   options?: { value: string; label: string; impact: string }[];
   placeholder?: string;
 }
+
+export interface LifecyclePhase {
+  step: string;
+  title: string;
+  summary: string;
+  description: string;
+  icon: string;
+  deliverables: string[];
+}
+

@@ -27,11 +27,12 @@ export default function Navbar({ onOpenBooking, onOpenAssessment }: NavbarProps)
 
   const menuItems = [
     { label: 'Home', href: '#home' },
-    { label: 'Services', href: '#services' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Diagnostic Assessment', href: '#assessment' },
+    { label: 'Capabilities', href: '#services' },
+    { label: 'Perspective', href: '#lifecycle' },
+    { label: 'Who We Are', href: '#about' },
+    { label: 'Insights', href: '#assessment' },
     { label: 'Why DC', href: '#why-us' },
-    { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Alliances', href: '#testimonials' },
     { label: 'Contact', href: '#contact' },
   ];
 

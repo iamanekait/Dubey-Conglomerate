@@ -103,7 +103,7 @@ export default function InteractiveScanner({ onOpenBooking }: ScannerProps) {
   const [step, setStep] = useState<1 | 2 | 3 | 'calculating' | 'result'>(1);
   const [formData, setFormData] = useState({
     domainName: '',
-    industry: 'manufacturing',
+    industry: 'define',
     bottleneck: 'margin',
     employees: 'mid',
     currentGrowth: '5-15',
@@ -240,12 +240,15 @@ export default function InteractiveScanner({ onOpenBooking }: ScannerProps) {
 
   const getIndustryLabel = () => {
     switch (formData.industry) {
-      case 'manufacturing': return 'Manufacturing & Heavy Industries';
-      case 'retail': return 'Retail, Franchise & FMCG Networks';
-      case 'tech': return 'Software, IT & High-Growth Startups';
-      case 'healthcare': return 'Healthcare & Clinical Services';
-      case 'realestate': return 'Real Estate & Infrastructure';
-      default: return 'Commercial Enterprise';
+      case 'define': return 'Define – Business strategy, innovation, and transformation roadmap.';
+      case 'design': return 'Design – Customer experience, service design, and digital products.';
+      case 'build': return 'Build – Applications, enterprise platforms, cloud infrastructure, and AI solutions.';
+      case 'launch': return 'Launch – Marketing, commerce, customer engagement, and go-to-market execution.';
+      case 'scale': return 'Scale – Analytics, optimization, organizational change, and continuous innovation.';
+      default: {
+        const opt = DIAGNOSTIC_QUESTIONS[0].options?.find(o => o.value === formData.industry);
+        return opt ? opt.label : 'Define – Business strategy, innovation, and transformation roadmap.';
+      }
     }
   };
 
@@ -411,7 +414,7 @@ export default function InteractiveScanner({ onOpenBooking }: ScannerProps) {
 
                 <div>
                   <label htmlFor="industry-select" className="block text-xs font-mono text-white/60 uppercase tracking-wider mb-2">
-                    Primary Industry Vertical
+                    Primary Transformation Capability
                   </label>
                   <select
                     id="industry-select"

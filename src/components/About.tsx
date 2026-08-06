@@ -1,8 +1,12 @@
-import { ShieldCheck, Activity, Briefcase, TrendingUp, Compass, Eye, Heart } from 'lucide-react';
+import { Compass, Palette, Cpu, Sparkles, Eye, Heart, ShieldCheck, Activity, Briefcase, TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import { CORE_VALUES } from '../data';
 
 const iconMap: Record<string, any> = {
+  Compass: Compass,
+  Palette: Palette,
+  Cpu: Cpu,
+  Sparkles: Sparkles,
   ShieldCheck: ShieldCheck,
   Activity: Activity,
   Briefcase: Briefcase,
@@ -49,33 +53,32 @@ export default function About() {
           >
             <div className="space-y-2">
               <span className="text-xs font-mono uppercase tracking-widest text-[#D4AF37] font-bold block">
-                OUR CORPORATE LEGACY
+                REINVENTING THE ENTERPRISE
               </span>
               <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
-                Pioneering Strategic Clarity Across Indian Enterprises
+                Fusing Business Strategy, Human Creativity, Deep Tech, Data & AI
               </h2>
             </div>
             
             <p className="text-sm sm:text-base text-white/70 leading-relaxed font-light">
-              Founded on the belief that enduring business growth requires both structural precision and 
-              local alignment, Dubey Conglomerate has grown into a leading business advisory firm in Eastern India. 
-              Based in Benachity, Durgapur, our team bridges the gap between complex global consulting framework 
-              systems and the pragmatic realities of regional logistics, commerce, and industrial management.
+              Traditional consulting firms separate business strategy from design and tech execution. At Dubey Conglomerate, 
+              we bring together the disciplines of high-stakes corporate strategy, human-centric creative experience design, 
+              full-stack cloud technology engineering, data analytics, and generative AI under one roof.
             </p>
 
             <p className="text-sm sm:text-base text-white/70 leading-relaxed font-light">
-              We serve a highly diverse corporate network — from steel foundry units in Asansol to growing retail 
-              franchises in Kolkata and tech-enabled startups. We reject cookie-cutter suggestions; instead, 
-              we work alongside administrative committees and managing partners to audit processes, unlock EBITDA margins, 
-              and build reliable treasury policies.
+              Combining world-class strategic foresight with cutting-edge technology and human experience design, 
+              we build integrated solutions that turn complex operational challenges into sustainable market leadership. 
+              Whether modernizing core platforms or deploying autonomous AI agent workflows, we partner with executives to deliver 
+              measurable economic value.
             </p>
 
             {/* Client Commitment Callout */}
             <div className="p-5 border-l-4 border-[#D4AF37] backdrop-blur-md bg-white/5 rounded-r-2xl border-y border-r border-white/10 space-y-2">
               <h3 className="font-display font-bold text-white text-sm">Our Undeviating Promise</h3>
               <p className="text-xs text-white/70 leading-relaxed">
-                "We measure our consulting legacy inside our client’s balance sheet. We commit fully to integrity, 
-                data transparency, and process architectures that remain firm through changing economic cycles."
+                "We do not deliver static slide decks. We partner with executive teams to design, code, build, and deploy 
+                living transformations across Strategy, Creativity, Tech, Data, and AI that drive measurable bottom-line performance."
               </p>
               <span className="block text-[11px] font-semibold text-white/90 uppercase tracking-widest">
                 — Managing Board, Dubey Conglomerate
@@ -100,8 +103,7 @@ export default function About() {
               </div>
               <h3 className="font-display font-bold text-lg text-white">Our Mission</h3>
               <p className="text-xs text-white/75 leading-relaxed font-light">
-                To equip Indian and Global enterprise systems with bulletproof business strategies, optimized cost structures, 
-                and rigorous management frameworks that accelerate growth, create jobs, and secure capital.
+                To equip progressive enterprises with world-class strategy, creative design, cloud engineering, predictive data platforms, and generative AI systems that unlock compounding value.
               </p>
             </div>
 
@@ -113,8 +115,7 @@ export default function About() {
               </div>
               <h3 className="font-display font-bold text-lg text-white">Our Vision</h3>
               <p className="text-xs text-white/75 leading-relaxed font-light">
-                To become India’s most trusted business advisory board, known globally for bridging high-precision 
-                financial engineering with solid ground-level operational success.
+                To be the premier next-generation digital consulting partner globally, pioneering the fusion of human creativity and AI-driven enterprise transformation.
               </p>
             </div>
 
@@ -123,11 +124,9 @@ export default function About() {
               <div className="w-10 h-10 bg-[#D4AF37]/10 rounded-xl flex items-center justify-center shadow-sm border border-[#D4AF37]/25">
                 <Heart className="w-5 h-5 text-[#D4AF37]" />
               </div>
-              <h3 className="font-bold text-lg text-[#D4AF37]">A Focus on Lasting Partnerships</h3>
+              <h3 className="font-bold text-lg text-[#D4AF37]">Integrated Transformation Architecture</h3>
               <p className="text-xs text-white/80 leading-relaxed font-light">
-                We believe consulting is much more than delivering slide slop or static templates. Dubey Conglomerate 
-                stands side-by-side with your management committees. We check execution parameters week-over-week, 
-                auditing local and global milestones to ensure strategic suggestions yield tangible commercial result.
+                By synthesizing Strategy, Creativity, Tech, Data, and AI, we eliminate functional silos. Our multidisciplinary squads design intuitive experiences, engineer resilient architectures, and deploy intelligent AI agents that turn vision into reality.
               </p>
             </div>
 

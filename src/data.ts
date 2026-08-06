@@ -1,141 +1,184 @@
-import { Service, Testimonial, MetricCard, DiagnosticQuestion } from './types';
+import { Service, Testimonial, MetricCard, DiagnosticQuestion, LifecyclePhase } from './types';
+
+export const LIFECYCLE_PHASES: LifecyclePhase[] = [
+  {
+    step: '01',
+    title: 'Define',
+    summary: 'Business strategy, innovation, and transformation roadmap.',
+    description: 'We construct defensible corporate strategies, analyze unit economics, define innovation agendas, and blueprint enterprise transformation roadmaps.',
+    icon: 'Compass',
+    deliverables: ['Corporate Strategy & GTM Blueprints', 'Business Model Innovation', 'Transformation Roadmap']
+  },
+  {
+    step: '02',
+    title: 'Design',
+    summary: 'Customer experience, service design, and digital products.',
+    description: 'We architect human-centered customer journeys, frictionless digital product interfaces, brand identities, and enterprise design systems.',
+    icon: 'Palette',
+    deliverables: ['CX & Service Design', 'UI/UX Product Architecture', 'Brand Experience & Systems']
+  },
+  {
+    step: '03',
+    title: 'Build',
+    summary: 'Applications, enterprise platforms, cloud infrastructure, and AI solutions.',
+    description: 'We engineer high-performance web and mobile applications, resilient cloud architectures, custom APIs, and agentic enterprise AI integrations.',
+    icon: 'Cpu',
+    deliverables: ['Cloud Infrastructure & Platforms', 'Full-Stack Software Development', 'Generative AI & LLM Systems']
+  },
+  {
+    step: '04',
+    title: 'Launch',
+    summary: 'Marketing, commerce, customer engagement, and go-to-market execution.',
+    description: 'We execute omnichannel growth campaigns, deploy modern digital commerce engines, optimize funnel conversion, and orchestrate market launches.',
+    icon: 'Rocket',
+    deliverables: ['Omnichannel GTM Execution', 'Digital Commerce Platforms', 'Customer Engagement Engines']
+  },
+  {
+    step: '05',
+    title: 'Scale',
+    summary: 'Analytics, optimization, organizational change, and continuous innovation.',
+    description: 'We establish real-time data telemetry, optimize operational performance, drive culture & change management, and foster continuous enterprise innovation.',
+    icon: 'TrendingUp',
+    deliverables: ['Real-Time Data Telemetry & CDP', 'Organizational Change Management', 'Continuous Optimization Engine']
+  }
+];
 
 export const CORE_VALUES = [
   {
-    title: 'Absolute Integrity',
-    description: 'Operating with unwavering ethical standards, complete transparency, and fiduciary excellence in all advisory relationships.',
-    icon: 'ShieldCheck',
+    title: 'Strategic Foresight',
+    description: 'Constructing resilient corporate strategies, market entry blueprints, and experience transformation roadmaps.',
+    icon: 'Compass',
   },
   {
-    title: 'Precision Architecture',
-    description: 'Structuring every advisory decision around hard, empirical data points and thorough financial modeling.',
-    icon: 'Activity',
+    title: 'Creative Excellence',
+    description: 'Designing human-centered customer experiences, brand identities, and immersive digital interfaces that resonate.',
+    icon: 'Palette',
   },
   {
-    title: 'Client-First Alliance',
-    description: 'Fostering cohesive, long-term partnerships aimed at compound growth rather than short-term transactions.',
-    icon: 'Briefcase',
+    title: 'Technological Mastery',
+    description: 'Building modern cloud architectures, robust digital products, and high-performance enterprise platforms.',
+    icon: 'Cpu',
   },
   {
-    title: 'Enduring Impact',
-    description: 'Creating foundational operational and administrative systems that scale reliably year after year.',
-    icon: 'TrendingUp',
+    title: 'Data & AI Intelligence',
+    description: 'Unlocking growth through predictive data analytics, customer data platforms, and agentic generative AI workflows.',
+    icon: 'Sparkles',
   }
 ];
 
 export const SERVICES: Service[] = [
   {
-    id: 'strategy',
-    title: 'Business Strategy Consulting',
-    shortDescription: 'Formulate defensible corporate strategies to maintain competitive edge, secure market share, and drive compounding valuation.',
-    detailedDescription: 'Our strategic consulting services enable established conglomerates and high-potential enterprises to map out future milestones with absolute clarity. We construct customized operational blueprints designed to absorb market shocks and exploit emerging trends.',
+    id: 'strategy-transformation',
+    title: 'Strategy & Business Transformation',
+    shortDescription: 'Reinvent your operating model and formulate defensible corporate strategies to secure market leadership.',
+    detailedDescription: 'Inspired by world-class consulting methodologies, our strategy practice bridges high-level vision with ground-level execution. We help enterprises reinvent business models, execute GTM strategies, and align organizational structure for sustainable growth.',
     icon: 'Compass',
     benefits: [
-      'Strategic market entry planning and defensibility reviews',
-      'Corporate restructuring and functional alignment',
-      'Joint venture guidance and asset delegation',
-      'M&A advisory and target identification'
+      'Corporate & Experience Transformation Roadmaps',
+      'Market Entry, Competitor Defense & GTM Execution',
+      'Business Model Innovation & Portfolio Optimization',
+      'Organizational Agility & Functional Alignment'
     ]
   },
   {
-    id: 'market-research',
-    title: 'Market Research & Analysis',
-    shortDescription: 'Mitigate risk through deep-dive demographic profiling, competitor analysis, and macro-economic demand forecasting.',
-    detailedDescription: 'Before you deploy critical capital, our intelligence teams analyze the micro and macro dynamics of your target arena. We unpack local insights within Eastern India (West Bengal, Bihar, Jharkhand) as well as global regulatory barriers.',
-    icon: 'SearchCode',
+    id: 'creative-experience',
+    title: 'Creativity & Experience Design (CX/UX)',
+    shortDescription: 'Deliver human-centric brand experiences, digital UI/UX, and customer journeys that build deep brand equity.',
+    detailedDescription: 'Creativity is the ultimate growth differentiator. We combine design thinking, brand strategy, and interaction design to create frictionless customer touchpoints, immersive digital products, and compelling narrative experiences.',
+    icon: 'Palette',
     benefits: [
-      'Aggregated consumer behavior analyses and sentiment mining',
-      'Supply chain vulnerability maps and alternative sourcing guides',
-      'Competitor stress-testing and price-elasticity modeling',
-      'Geographic viability studies (retail, commercial, manufacturing)'
+      'Customer Experience (CX) & User Experience (UX) Architecture',
+      'Brand Identity, Positioning & Creative Direction',
+      'Omnichannel Customer Journey & Design System Builds',
+      'Content Intelligence & Interactive Product Design'
     ]
   },
   {
-    id: 'optimization',
-    title: 'Business Process Optimization',
-    shortDescription: 'Identify and dismantle operational friction points to reclaim EBITDA margin and elevate delivery velocity.',
-    detailedDescription: 'Through rigorous Six Sigma and Lean operational reviews, we audit internal workflows. We help businesses automate manual workloads, optimize inventory rotation, and upgrade inter-departmental telemetry.',
+    id: 'technology-engineering',
+    title: 'Technology & Digital Engineering',
+    shortDescription: 'Architect resilient cloud solutions, full-stack digital products, and scalable enterprise platforms.',
+    detailedDescription: 'We build modern technological foundations that scale seamlessly. From modernizing legacy enterprise platforms to launching full-stack digital product studios, our engineering teams deliver speed, security, and performance.',
     icon: 'Cpu',
     benefits: [
-      'Full-spectrum workflow bottlenecks identification and redesign',
-      'Standard Operating Procedure (SOP) documentation and digital audit logs',
-      'Enterprise resource tool stack evaluations (ERP & CRM alignment)',
-      'Operational cost reduction and overhead mitigation'
+      'Cloud Architecture, Microservices & Platform Modernization',
+      'Full-Stack Web & Mobile Digital Product Development',
+      'API Integration, Headless Architectures & DevOps',
+      'Enterprise Software Audit & Infrastructure Hardening'
     ]
   },
   {
-    id: 'growth-expansion',
-    title: 'Growth & Expansion Planning',
-    shortDescription: 'Scale your footprint across regional borders, unlock franchise models, or establish new distribution channels.',
-    detailedDescription: 'We help profitable enterprises break through regional plateaus. Our advisers construct the legal, financial, and logistic routes to expand safely from Durgapur to national frontiers.',
-    icon: 'GlobeIcon',
+    id: 'data-analytics',
+    title: 'Data Analytics & Predictive Intelligence',
+    shortDescription: 'Turn raw data into actionable intelligence with customer data platforms, telemetry, and predictive modeling.',
+    detailedDescription: 'Data is the engine of modern competitive advantage. We implement end-to-end data pipelines, customer data platforms (CDP), and real-time operational dashboards that empower executive committees to make hyper-accurate decisions.',
+    icon: 'Database',
     benefits: [
-      'Franchise network modeling and compliance framework builds',
-      'Cross-border and multi-state logistics channel design',
-      'B2B partner network acquisition and contract negotiations',
-      'Digital-first omni-channel growth campaigns planning'
+      'Customer Data Platforms (CDP) & Unified Data Fabrics',
+      'Real-Time Operational Telemetry & EBITDA Analytics',
+      'Predictive Customer Behavior & Demand Forecasting',
+      'Business Intelligence Dashboards & KPI Monitoring'
     ]
   },
   {
-    id: 'startup-advisory',
-    title: 'Startup Advisory & Incubation',
-    shortDescription: 'Equip early-phase founders with premium pitch architectures, cap-table strategy, and early investor readiness metrics.',
-    detailedDescription: 'Turn raw technological and operational innovations into investable venture-backed business machines. We support founders with pitch structures, financial modeling, and early growth strategies.',
-    icon: 'Zap',
+    id: 'enterprise-ai',
+    title: 'Enterprise AI & Agentic Automation',
+    shortDescription: 'Deploy custom Generative AI, LLM solutions, and autonomous agentic workflows to multiply workforce productivity.',
+    detailedDescription: 'Move from AI experimentation to scalable enterprise deployment. We integrate state-of-the-art Generative AI models, agentic workflows, and automated process intelligence directly into your existing business software stack.',
+    icon: 'Sparkles',
     benefits: [
-      'Venture pitch deck structuring and narration review',
-      'Unit economics modeling and pricing strategy validation',
-      'Advisory on compliance, GST, and seed financing protocols',
-      'Go-To-Market (GTM) velocity plans'
+      'Custom LLM Integration & Enterprise AI Copilots',
+      'Agentic Workflow Automation & Intelligent SOPs',
+      'Natural Language Data Querying & Knowledge Engines',
+      'AI Governance, Security & Model Fine-Tuning'
     ]
   },
   {
-    id: 'financial-operational',
-    title: 'Financial & Operational Consulting',
-    shortDescription: 'Implement strict treasury practices, optimize working capital pipelines, and implement resilient cost governance.',
-    detailedDescription: 'Ensure high levels of liquidity and prudent capital allocation. We partner with CFOs and business owners to audit working capital cycles, balance debt structures, and maximize returns on capital employed (ROCE).',
-    icon: 'DollarSign',
+    id: 'growth-incubation',
+    title: 'Growth Acceleration & Digital Incubation',
+    shortDescription: 'Equip high-potential ventures with GTM execution, venture capital readiness, and scale-up engines.',
+    detailedDescription: 'We help early-stage and expanding enterprises transition into market leaders. Our incubation practice offers pitch deck architecture, unit economics optimization, investor readiness metrics, and rapid scaling frameworks.',
+    icon: 'Rocket',
     benefits: [
-      'Working capital efficiency reviews and cash-burn reduction programs',
-      'Budgetary control systems and strict department cost governance',
-      'Strategic capital structuring (debt-equity balance optimization)',
-      'Risk mitigation architectures and long-term asset security planning'
+      'Venture Pitch Deck Architecture & Valuation Strategy',
+      'Unit Economics Optimization & Pricing Validation',
+      'Go-To-Market (GTM) Velocity & Customer Acquisition Engines',
+      'Franchise & Multi-Region Expansion Frameworks'
     ]
   }
 ];
 
 export const METRICS: MetricCard[] = [
   {
-    id: 'clients',
-    value: '180',
+    id: 'transformations',
+    value: '250',
     prefix: '',
     suffix: '+',
-    label: 'Corporate Entities Advised',
-    description: 'Providing premium consulting to manufacturing units, trade networks, and tech ventures across India.'
+    label: 'Transformations Delivered',
+    description: 'Empowering enterprises across strategy, creative design, technology, data, and artificial intelligence.'
   },
   {
-    id: 'valuation',
-    value: '1,500',
+    id: 'capital',
+    value: '2,000',
     prefix: '₹',
     suffix: ' Cr+',
-    label: 'Client Capital Guided',
-    description: 'We orchestrate capital strategies that optimize high-value asset portfolios and working capital flows.'
+    label: 'Client Value Unlocked',
+    description: 'Guiding corporate valuation growth, cost optimization, and market expansion across key sectors.'
   },
   {
     id: 'satisfaction',
-    value: '98',
+    value: '99',
     prefix: '',
     suffix: '%',
     label: 'Strategic Retention Rate',
-    description: 'Our clients maintain multi-year partnership alliances with our advisory cabinet.'
+    description: 'Long-term advisory partnerships built on measurable business performance and innovation.'
   },
   {
-    id: 'experience',
-    value: '15',
+    id: 'pillars',
+    value: '5',
     prefix: '',
-    suffix: '+ Yrs',
-    label: 'Collective Advisory Legacy',
-    description: 'Led by seasoned industry captains and chartered operational professionals.'
+    suffix: ' Pillars',
+    label: 'Unified Core Synergy',
+    description: 'Seamless integration of Strategy, Creativity, Tech, Data, and AI in every solution.'
   }
 ];
 
@@ -144,60 +187,60 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 'test-1',
     name: 'Rajesh Sen',
     role: 'Managing Director',
-    company: 'Sen & Sons Industrial Steel Ltd, Asansol',
-    review: 'Dubey Conglomerate restructured our entire factory dispatch logistical flow and saved us approx. 14% in annual operations leakage. Their custom process optimization work was detailed, objective, and executed with high corporate precision.',
+    company: 'Sen & Sons Industrial Steel, Asansol',
+    review: 'Dubey Conglomerate redefined our entire operational model. By combining strategic consulting with AI-driven predictive supply chain analytics, they reduced dispatch friction by 18% and gave us real-time EBITDA visibility.',
     rating: 5
   },
   {
     id: 'test-2',
     name: 'Priyanka Mukherjee',
-    role: 'Co-Founder & COO',
-    company: 'NeoAgro Supply Chain Solutions, Kolkata',
-    review: 'The startup advisory we received from Dubey Conglomerate changed how we present unit economics. Thanks to their pitch validation metrics, we raised our pre-Series A funding seamlessly. Their advisory of the regulatory landscape in West Bengal is unmatched.',
+    role: 'Co-Founder & Chief Product Officer',
+    company: 'NeoAgro Digital Solutions, Kolkata',
+    review: 'The combination of creative experience design, full-stack product engineering, and AI agentic automation provided by Dubey Conglomerate transformed our platform. Our user engagement tripled within 90 days.',
     rating: 5
   },
   {
     id: 'test-3',
     name: 'Anirban Lahiri',
-    role: 'Director of Asset Management',
-    company: 'Durgapur Plaza Hospitality Holdings',
-    review: 'Having strategic advisors who physically understand the Benachity business belt and West Bengal markets made all the difference. Their market viability research is deeply analytical. We trust Dubey Conglomerate with our high-value commercial expansions.',
+    role: 'Director of Brand & Strategy',
+    company: 'Durgapur Horizon Enterprises',
+    review: 'Dubey Conglomerate brings world-class strategy, creative design, and AI sophistication to our enterprise. Their data analytics platform and strategic expansion plan allowed us to scale into three new regional markets smoothly.',
     rating: 5
   }
 ];
 
 export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
   {
-    id: 'industry',
-    question: 'Select your primary operational industry vertical:',
+    id: 'primary_focus',
+    question: 'Select your primary strategic transformation priority:',
     type: 'select',
     options: [
-      { value: 'manufacturing', label: 'Manufacturing & Heavy Industries', impact: 'High supply chain friction and energy overhead focus.' },
-      { value: 'retail', label: 'Retail, Franchise & FMCG Networks', impact: 'High pressure on inventory turnovers and distribution routes.' },
-      { value: 'tech', label: 'Software, IT & High-Growth Startups', impact: 'Unit economics and user-acquisition speed priorities.' },
-      { value: 'healthcare', label: 'Healthcare, Clinical & Pharmaceuticals', impact: 'Strict regulatory matrices combined with scheduling bottlenecks.' },
-      { value: 'realestate', label: 'Real Estate & Infrastructure Developers', impact: 'Capital structuring, long liquidity cycles, and project financing.' }
+      { value: 'define', label: 'Define – Business strategy, innovation, and transformation roadmap.', impact: 'Focus on business strategy, innovation, and transformation roadmap.' },
+      { value: 'design', label: 'Design – Customer experience, service design, and digital products.', impact: 'Focus on customer experience, service design, and digital products.' },
+      { value: 'build', label: 'Build – Applications, enterprise platforms, cloud infrastructure, and AI solutions.', impact: 'Focus on applications, enterprise platforms, cloud infrastructure, and AI solutions.' },
+      { value: 'launch', label: 'Launch – Marketing, commerce, customer engagement, and go-to-market execution.', impact: 'Focus on marketing, commerce, customer engagement, and go-to-market execution.' },
+      { value: 'scale', label: 'Scale – Analytics, optimization, organizational change, and continuous innovation.', impact: 'Focus on analytics, optimization, organizational change, and continuous innovation.' }
     ]
   },
   {
     id: 'biggest_challenge',
-    question: 'Identify your most critical bottleneck/friction point:',
+    question: 'Identify your most critical growth friction point:',
     type: 'select',
     options: [
-      { value: 'margin', label: 'Decreasing Profit Margins / EBITDA Friction', impact: 'Process Optimization and Cost Governance Strategy recommended.' },
-      { value: 'scale', label: 'Inability to scale out of the current city/state', impact: 'Growth & Expansion Strategy with Franchising options recommended.' },
-      { value: 'capital', label: 'Working Capital crunch & inefficient credit lines', impact: 'Financial & Operational Consulting and Balance Sheet Restructuring recommended.' },
-      { value: 'efficiency', label: 'Manual administrative processes and paper dependence', impact: 'Digital Transformation, ERP Audit, and automated workflow SOPs recommended.' }
+      { value: 'margin', label: 'Decreasing Margins / Need for Cost & Process Optimization', impact: 'Strategy & Process Optimization with Data Telemetry recommended.' },
+      { value: 'cx', label: 'Outdated Customer Experience & Low Digital Conversion', impact: 'Creativity & CX/UX Design System overhaul recommended.' },
+      { value: 'legacy_tech', label: 'Legacy Tech Systems & Slow Product Delivery', impact: 'Technology Engineering & Cloud Platform Modernization recommended.' },
+      { value: 'ai_adoption', label: 'Manual Workflows & Lack of AI/Automation Integration', impact: 'Enterprise AI & Agentic Workflow Automation recommended.' }
     ]
   },
   {
-    id: 'employee_count',
-    question: 'Approximate scale of your human capital (Employee Count):',
+    id: 'organization_scale',
+    question: 'Scale of your organization (Human Capital & Operations):',
     type: 'select',
     options: [
-      { value: 'micro', label: '1 to 15 employees (Micro scale)', impact: 'Foundations and base legal, financial governance required.' },
-      { value: 'mid', label: '16 to 100 employees (Mid scale)', impact: 'Formally documented SOPs and delegation architectures required.' },
-      { value: 'enterprise', label: 'Over 100 employees (Enterprise scale)', impact: 'Continuous cost-reduction sprints and enterprise telemetry required.' }
+      { value: 'micro', label: '1 to 15 team members (Growth Phase)', impact: 'Fast-track digital incubation and GTM foundation strategy.' },
+      { value: 'mid', label: '16 to 100 team members (Scaling Enterprise)', impact: 'Full-stack technology architecture and data pipeline integration.' },
+      { value: 'enterprise', label: 'Over 100 team members (Corporate Leader)', impact: 'Enterprise AI deployment, corporate strategy, and experience transformation.' }
     ]
   }
 ];

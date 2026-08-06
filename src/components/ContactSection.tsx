@@ -1,4 +1,5 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { 
   Mail, 
   MapPin, 
@@ -10,25 +11,44 @@ import {
   Building,
   Loader2,
   AlertCircle,
+  AlertTriangle,
   X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeStorage } from '../utils/storage';
 
-export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: '',
-  });
+interface ContactFormInputs {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  message: string;
+  website?: string; // Honeypot field
+}
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
+export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState<ContactFormInputs | null>(null);
   const [showToast, setShowToast] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<ContactFormInputs>({
+    mode: 'onChange',
+    defaultValues: {
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      message: '',
+      website: '',
+    }
+  });
 
   useEffect(() => {
     if (showToast) {
@@ -39,108 +59,86 @@ export default function ContactSection() {
     }
   }, [showToast]);
 
-  // Simple, robust client-side validations
-  const validateForm = () => {
-    const tempErrors: Record<string, string> = {};
-    if (!formData.name.trim()) tempErrors.name = 'Name is required';
-    if (!formData.email.trim()) {
-      tempErrors.email = 'Email address is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = 'Please provide a valid email structure';
+  const onFormSubmit = async (formData: ContactFormInputs) => {
+    // Spam Prevention: Honeypot check
+    if (formData.website && formData.website.trim() !== '') {
+      console.warn('[Spam Guard] Honeypot field triggered. Intercepting automated submission.');
+      // Silently simulate success to deceive spam bots without storing or sending email
+      setIsSubmitted(true);
+      setShowToast(true);
+      return;
     }
-    if (!formData.phone.trim()) {
-      tempErrors.phone = 'Phone number is required';
-    } else if (!/^[+0-9\s()-.]{7,20}$/.test(formData.phone.trim())) {
-      tempErrors.phone = 'Provide a valid phone structure (e.g., 9434012345)';
-    }
-    if (!formData.message.trim()) tempErrors.message = 'Please input a briefing statement';
 
-    setErrors(tempErrors);
-    return Object.keys(tempErrors).length === 0;
-  };
+    setIsSubmitting(true);
+    setSubmitError('');
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors((prev) => {
-        const update = { ...prev };
-        delete update[field];
-        return update;
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'inquiry',
+          payload: formData,
+        }),
       });
-    }
-  };
 
-  const handleFormSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (validateForm()) {
-      setIsSubmitting(true);
-      setSubmitError('');
+      if (!response.ok) {
+        const errText = await response.text().catch(() => '');
+        throw new Error(`Server returned status ${response.status} ${response.statusText}. ${errText}`);
+      }
 
+      await response.json().catch(() => ({ success: true }));
+
+      setSubmittedData(formData);
+      setIsSubmitted(true);
+      setShowToast(true);
+      
       try {
-        const response = await fetch('/api/submit-form', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            formType: 'inquiry',
-            payload: formData,
-          }),
+        const currentLeads = JSON.parse(safeStorage.getItem('dc_inquiries') || '[]');
+        currentLeads.push({
+          id: `lead-${Date.now()}`,
+          ...formData,
+          timestamp: new Date().toISOString()
         });
-
-        if (!response.ok) {
-          const errText = await response.text().catch(() => '');
-          throw new Error(`Server returned status ${response.status} ${response.statusText}. ${errText}`);
-        }
-
-        const data = await response.json().catch(() => ({ success: true }));
-
+        safeStorage.setItem('dc_inquiries', JSON.stringify(currentLeads));
+      } catch (storageErr) {
+        console.warn('[Storage] Local storage is disabled or blocked in this context:', storageErr);
+      }
+    } catch (err: any) {
+      console.warn('[Form Submission Fallback] Network dispatch failed, queuing dossier locally:', err);
+      
+      // Save to Local Storage anyway so the inquiry is recorded and accessible under local ledgers
+      try {
+        const currentLeads = JSON.parse(safeStorage.getItem('dc_inquiries') || '[]');
+        currentLeads.push({
+          id: `lead-${Date.now()}`,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company || 'N/A',
+          message: formData.message,
+          timestamp: new Date().toISOString(),
+          queuedOffline: true
+        });
+        safeStorage.setItem('dc_inquiries', JSON.stringify(currentLeads));
+        
+        setSubmittedData(formData);
         setIsSubmitted(true);
         setShowToast(true);
-        // Store submission locally as a historical validation proof
-        try {
-          const currentLeads = JSON.parse(safeStorage.getItem('dc_inquiries') || '[]');
-          currentLeads.push({
-            id: `lead-${Date.now()}`,
-            ...formData,
-            timestamp: new Date().toISOString()
-          });
-          safeStorage.setItem('dc_inquiries', JSON.stringify(currentLeads));
-        } catch (storageErr) {
-          console.warn('[Storage] Local storage is disabled or blocked in this context:', storageErr);
-        }
-      } catch (err: any) {
-        console.warn('[Form Submission Fallback] Network dispatch failed, queuing dossier locally:', err);
-        
-        // Save to Local Storage anyway so the inquiry is recorded and accessible under local ledgers
-        try {
-          const currentLeads = JSON.parse(safeStorage.getItem('dc_inquiries') || '[]');
-          currentLeads.push({
-            id: `lead-${Date.now()}`,
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            company: formData.company || 'N/A',
-            message: formData.message,
-            timestamp: new Date().toISOString(),
-            queuedOffline: true
-          });
-          safeStorage.setItem('dc_inquiries', JSON.stringify(currentLeads));
-          
-          setIsSubmitted(true);
-          setShowToast(true);
-        } catch (storageErr) {
-          console.error(storageErr);
-          setSubmitError(`Transmission failed: ${err?.message || 'Underlying proxy channel is unavailable.'}`);
-        }
-      } finally {
-        setIsSubmitting(false);
+      } catch (storageErr) {
+        console.error(storageErr);
+        setSubmitError(`Transmission failed: ${err?.message || 'Underlying proxy channel is unavailable.'}`);
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const resetFormState = () => {
-    setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+    reset();
+    setSubmittedData(null);
     setIsSubmitted(false);
     setShowToast(false);
     setSubmitError('');
@@ -307,7 +305,18 @@ export default function ContactSection() {
             </h3>
 
             {!isSubmitted ? (
-              <form onSubmit={handleFormSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
+                {/* Honeypot field - anti-spam trap for automated bots */}
+                <div className="absolute opacity-0 pointer-events-none -z-50 h-0 w-0 overflow-hidden select-none" aria-hidden="true">
+                  <label htmlFor="form-website">Do not fill this field</label>
+                  <input
+                    id="form-website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    {...register('website')}
+                  />
+                </div>
                 
                 {/* Dual Column: Name & Company */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -319,13 +328,15 @@ export default function ContactSection() {
                       id="form-name"
                       type="text"
                       placeholder="e.g. Aniket Dubey"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      {...register('name', {
+                        required: 'Full Name is required',
+                        minLength: { value: 2, message: 'Name must be at least 2 characters' }
+                      })}
                       className={`w-full bg-white/5 border ${
-                        errors.name ? 'border-red-500' : 'border-white/10'
-                      } focus:border-[#D4AF37] focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
+                        errors.name ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#D4AF37]'
+                      } focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
                     />
-                    {errors.name && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.name}</span>}
+                    {errors.name && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.name.message}</span>}
                   </div>
 
                   <div>
@@ -337,13 +348,14 @@ export default function ContactSection() {
                       id="form-company"
                       type="text"
                       placeholder="e.g. Dubey Industries Ltd"
-                      value={formData.company}
-                      onChange={(e) => handleInputChange('company', e.target.value)}
+                      {...register('company', {
+                        required: 'Company Name is required'
+                      })}
                       className={`w-full bg-white/5 border ${
-                        errors.company ? 'border-red-500' : 'border-white/10'
-                      } focus:border-[#D4AF37] focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
+                        errors.company ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#D4AF37]'
+                      } focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
                     />
-                    {errors.company && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.company}</span>}
+                    {errors.company && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.company.message}</span>}
                   </div>
                 </div>
 
@@ -357,13 +369,18 @@ export default function ContactSection() {
                       id="form-email"
                       type="email"
                       placeholder="e.g. contact@yourfirm.com"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      {...register('email', {
+                        required: 'Institutional Email Address is required',
+                        pattern: {
+                          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                          message: 'Please enter a valid email address (e.g. name@company.com)'
+                        }
+                      })}
                       className={`w-full bg-white/5 border ${
-                        errors.email ? 'border-red-500' : 'border-white/10'
-                      } focus:border-[#D4AF37] focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
+                        errors.email ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#D4AF37]'
+                      } focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
                     />
-                    {errors.email && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.email}</span>}
+                    {errors.email && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.email.message}</span>}
                   </div>
 
                   <div>
@@ -374,13 +391,18 @@ export default function ContactSection() {
                       id="form-phone"
                       type="tel"
                       placeholder="e.g. 9434012345"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      {...register('phone', {
+                        required: 'Primary Contact Number is required',
+                        pattern: {
+                          value: /^[+0-9\s()-.]{7,20}$/,
+                          message: 'Provide a valid phone structure (e.g. 9434012345)'
+                        }
+                      })}
                       className={`w-full bg-white/5 border ${
-                        errors.phone ? 'border-red-500' : 'border-white/10'
-                      } focus:border-[#D4AF37] focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
+                        errors.phone ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#D4AF37]'
+                      } focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all`}
                     />
-                    {errors.phone && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.phone}</span>}
+                    {errors.phone && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.phone.message}</span>}
                   </div>
                 </div>
 
@@ -393,13 +415,15 @@ export default function ContactSection() {
                     id="form-message"
                     rows={5}
                     placeholder="Provide details about your current operational metrics, growth constraints, or capital challenges..."
-                    value={formData.message}
-                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    {...register('message', {
+                      required: 'Briefing Statement is required',
+                      minLength: { value: 10, message: 'Please provide at least 10 characters for your briefing objectives' }
+                    })}
                     className={`w-full bg-white/5 border ${
-                      errors.message ? 'border-red-500' : 'border-white/10'
-                      } focus:border-[#D4AF37] focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all resize-none`}
+                      errors.message ? 'border-red-500/80 focus:border-red-500' : 'border-white/10 focus:border-[#D4AF37]'
+                    } focus:outline-none rounded-xl p-3 text-xs text-white placeholder-white/30 transition-all resize-none`}
                   />
-                  {errors.message && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.message}</span>}
+                  {errors.message && <span className="text-[10px] text-red-400 font-mono mt-1 block">{errors.message.message}</span>}
                 </div>
 
                 {/* Secure Disclaimer */}
@@ -411,23 +435,49 @@ export default function ContactSection() {
                   </span>
                 </div>
 
-                {submitError && (
-                  <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-xs text-red-300 flex items-center space-x-2">
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    <span>{submitError}</span>
-                  </div>
-                )}
+                <AnimatePresence>
+                  {submitError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                      transition={{ duration: 0.25 }}
+                      className="p-4 bg-red-950/50 border border-red-500/40 rounded-2xl text-xs text-red-200 shadow-xl backdrop-blur-md relative flex items-start space-x-3.5"
+                      role="alert"
+                    >
+                      <div className="p-2 bg-red-500/20 rounded-xl flex-shrink-0 text-red-400 mt-0.5">
+                        <AlertTriangle className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1 pr-6 space-y-1">
+                        <h5 className="font-semibold text-red-300 text-xs tracking-wide">
+                          Submission Failure
+                        </h5>
+                        <p className="text-[11px] text-red-200/80 font-light leading-relaxed">
+                          {submitError}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setSubmitError('')}
+                        className="absolute top-3 right-3 text-red-300/60 hover:text-red-200 transition-colors p-1 rounded-lg hover:bg-red-500/20 cursor-pointer"
+                        aria-label="Dismiss error message"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* CTA Action button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#D4AF37] text-[#050B18] font-bold py-3.5 px-4 rounded-full text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 disabled:hover:scale-100 disabled:opacity-50 group flex items-center justify-center space-x-2 transition-all cursor-pointer shadow-lg"
+                  className="w-full bg-[#D4AF37] text-[#050B18] font-bold py-3.5 px-4 rounded-full text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-95 disabled:hover:scale-100 disabled:opacity-60 disabled:cursor-not-allowed group flex items-center justify-center space-x-2.5 transition-all cursor-pointer shadow-lg relative overflow-hidden"
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin text-[#050B18]" />
-                      <span>Transmitting Dossier...</span>
+                      <span className="font-semibold tracking-wider">Processing & Transmitting...</span>
                     </>
                   ) : (
                     <>
@@ -450,8 +500,8 @@ export default function ContactSection() {
                     Transmittal Protocol Confirmed
                   </h4>
                   <p className="text-xs text-white/70 max-w-md mx-auto leading-relaxed font-light">
-                    Your brief for <strong>{formData.company}</strong> has been transmitted to our secure desk files. 
-                    An advisor will evaluate the metrics and reach out to your team at <strong>{formData.email}</strong> 
+                    Your brief for <strong>{submittedData?.company}</strong> has been transmitted to our secure desk files. 
+                    An advisor will evaluate the metrics and reach out to your team at <strong>{submittedData?.email}</strong> 
                     within one standard regional business day.
                   </p>
                 </div>
