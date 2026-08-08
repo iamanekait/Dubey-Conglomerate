@@ -53,35 +53,29 @@ export default function About() {
           >
             <div className="space-y-2">
               <span className="text-xs font-mono uppercase tracking-widest text-[#D4AF37] font-bold block">
-                REINVENTING THE ENTERPRISE
+                EXPERIENCE TRANSFORMATION PARTNER
               </span>
               <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
-                Fusing Business Strategy, Human Creativity, Deep Tech, Data & AI
+                Reimagining How Enterprises Operate, Engage & Create Value
               </h2>
             </div>
             
             <p className="text-sm sm:text-base text-white/70 leading-relaxed font-light">
-              Traditional consulting firms separate business strategy from design and tech execution. At Dubey Conglomerate, 
-              we bring together the disciplines of high-stakes corporate strategy, human-centric creative experience design, 
-              full-stack cloud technology engineering, data analytics, and generative AI under one roof.
+              Dubey Conglomerate is an Experience Transformation Partner that helps organizations reimagine how they operate, engage, and create value by combining strategy, design, AI, data, and engineering into measurable business outcomes.
             </p>
 
             <p className="text-sm sm:text-base text-white/70 leading-relaxed font-light">
-              Combining world-class strategic foresight with cutting-edge technology and human experience design, 
-              we build integrated solutions that turn complex operational challenges into sustainable market leadership. 
-              Whether modernizing core platforms or deploying autonomous AI agent workflows, we partner with executives to deliver 
-              measurable economic value.
+              By bringing together <strong>Strategy, Creativity, Tech, Data, and AI</strong> into one cohesive multidisciplinary approach, we seamlessly deliver across the complete transformation lifecycle: <strong>Define, Design, Build, Launch, and Scale</strong>.
             </p>
 
             {/* Client Commitment Callout */}
             <div className="p-5 border-l-4 border-[#D4AF37] backdrop-blur-md bg-white/5 rounded-r-2xl border-y border-r border-white/10 space-y-2">
               <h3 className="font-display font-bold text-white text-sm">Our Undeviating Promise</h3>
               <p className="text-xs text-white/70 leading-relaxed">
-                "We do not deliver static slide decks. We partner with executive teams to design, code, build, and deploy 
-                living transformations across Strategy, Creativity, Tech, Data, and AI that drive measurable bottom-line performance."
+                "We do not deliver static slide decks. As an Experience Transformation Partner, we engineer end-to-end solutions across Strategy, Creativity, Tech, Data, and AI that convert complex challenges into measurable business outcomes."
               </p>
               <span className="block text-[11px] font-semibold text-white/90 uppercase tracking-widest">
-                — Managing Board, Dubey Conglomerate
+                — Executive Board, Dubey Conglomerate
               </span>
             </div>
           </motion.div>

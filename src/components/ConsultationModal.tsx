@@ -25,6 +25,7 @@ export default function ConsultationModal({
     date: '',
     timeSlot: '10:00 AM',
     notes: presetNotes || '',
+    website: '', // Honeypot field for bot filtering
   });
 
   const [errorMsg, setErrorMsg] = useState('');
@@ -40,6 +41,14 @@ export default function ConsultationModal({
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Spam Prevention: Honeypot check
+    if (formData.website && formData.website.trim() !== '') {
+      console.warn('[Spam Guard] Honeypot triggered in ConsultationModal.');
+      setIsSuccess(true);
+      return;
+    }
+
     if (!formData.name || !formData.email || !formData.phone || !formData.company || !formData.date) {
       setErrorMsg('All vital dossier coordinates are required to schedule.');
       return;
@@ -157,6 +166,19 @@ export default function ConsultationModal({
             )}
 
             <div className="space-y-3">
+              {/* Hidden Honeypot Field for Spam Detection */}
+              <div className="absolute opacity-0 pointer-events-none -z-50 h-0 w-0 overflow-hidden select-none" aria-hidden="true">
+                <label htmlFor="modal-website">Do not fill this field</label>
+                <input
+                  id="modal-website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={(e) => handleInputChange('website', e.target.value)}
+                />
+              </div>
+
               {/* Double Fields: Name & Company */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>

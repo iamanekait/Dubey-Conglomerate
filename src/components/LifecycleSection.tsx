@@ -65,8 +65,7 @@ export default function LifecycleSection() {
             transition={{ delay: 0.2 }}
             className="text-sm sm:text-base text-white/60 font-light leading-relaxed"
           >
-            Our holistic 5-stage delivery model seamlessly bridges strategic intent with technical execution, 
-            driving compounding enterprise value at every phase.
+            Our core capabilities span Define, Design, Build, Launch, and Scale — combining strategy, design, AI, data, and engineering to deliver measurable business outcomes at every phase.
           </motion.p>
         </div>
 

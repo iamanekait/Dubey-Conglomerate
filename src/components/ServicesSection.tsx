@@ -114,13 +114,13 @@ export default function ServicesSection({ onOpenBooking }: ServicesProps) {
           className="text-center max-w-3xl mx-auto mb-12 space-y-3"
         >
           <span className="text-xs font-mono uppercase tracking-widest text-[#D4AF37] font-bold block">
-            TRANSFORMATION CAPABILITIES
+            EXPERIENCE TRANSFORMATION CAPABILITIES
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            End-to-End Capabilities Across Strategy, Creativity, Tech, Data & AI
+            Strategy, Design, AI, Data & Engineering Combined
           </h2>
           <p className="text-sm text-white/60 font-light leading-relaxed">
-            We operate at the intersection of business strategy, human-centered experience design, full-stack technology engineering, predictive data platforms, and agentic enterprise AI.
+            As an Experience Transformation Partner, we bring together business strategy, customer experience design, enterprise platforms, predictive data analytics, and generative AI into measurable business outcomes across Define, Design, Build, Launch, and Scale.
           </p>
         </motion.div>
 

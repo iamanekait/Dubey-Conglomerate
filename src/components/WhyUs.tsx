@@ -88,15 +88,15 @@ export default function WhyUs() {
           <div className="inline-flex items-center space-x-1.5 backdrop-blur-md bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10">
             <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
             <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-[#D4AF37] font-bold">
-              THE DUBEY ADVANTAGE
+              THE EXPERIENCE TRANSFORMATION ADVANTAGE
             </span>
           </div>
           
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Where Business Strategy Meets Creative & Technological Excellence
+            Reimagining How Organizations Operate, Engage & Create Value
           </h2>
           <p className="text-sm text-white/60 leading-relaxed font-light">
-            We operate at the forefront of enterprise transformation, delivering integrated consulting across Strategy, Creativity, Tech, Data, and AI.
+            As an Experience Transformation Partner, we integrate Strategy, Creativity, Tech, Data, and AI to turn complex organizational challenges into measurable business outcomes.
           </p>
         </motion.div>
 

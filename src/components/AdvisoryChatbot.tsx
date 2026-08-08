@@ -31,7 +31,7 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Welcome to Dubey Conglomerate. I am your Executive AI Ambassador. How may I assist with your Strategy, Experience Design (CX/UX), Cloud Engineering, Data Analytics, or Enterprise AI transformation today?",
+      content: "Welcome to Dubey Conglomerate, your Experience Transformation Partner. How may I assist you with Define, Design, Build, Launch, or Scale capabilities across Strategy, Creativity, Tech, Data, and AI today?",
       timestamp: new Date()
     }
   ]);

@@ -115,7 +115,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
             >
               <Sparkles className="w-3.5 h-3.5 text-corp-gold-400" />
               <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.15em] text-corp-gold-300">
-                Strategy • Creativity • Tech • Data • AI
+                Experience Transformation Partner
               </span>
             </motion.div>
 
@@ -124,14 +124,13 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               className="space-y-4 flex flex-col items-center"
             >
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
-                Fusing Strategy, Creativity,
+                Reimagining How Organizations
                 <span className="block mt-2 bg-gradient-to-r from-corp-gold-300 via-corp-gold-400 to-corp-gold-500 bg-clip-text text-transparent">
-                  Tech, Data & Enterprise AI
+                  Operate, Engage & Create Value
                 </span>
               </h1>
               <p className="text-sm sm:text-base lg:text-lg text-corp-navy-200 font-light max-w-2xl leading-relaxed">
-                Dubey Conglomerate combines high-stakes corporate strategy, human-centered creative design, 
-                full-stack cloud technology, data telemetry, and generative AI to reinvent business models for the future.
+                Dubey Conglomerate is an Experience Transformation Partner that helps organizations reimagine how they operate, engage, and create value by combining strategy, design, AI, data, and engineering into measurable business outcomes.
               </p>
             </motion.div>
 

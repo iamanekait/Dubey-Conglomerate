@@ -5,63 +5,63 @@ export const LIFECYCLE_PHASES: LifecyclePhase[] = [
     step: '01',
     title: 'Define',
     summary: 'Business strategy, innovation, and transformation roadmap.',
-    description: 'We construct defensible corporate strategies, analyze unit economics, define innovation agendas, and blueprint enterprise transformation roadmaps.',
+    description: 'We help organizations construct defensible business strategies, define innovation agendas, and blueprint comprehensive transformation roadmaps.',
     icon: 'Compass',
-    deliverables: ['Corporate Strategy & GTM Blueprints', 'Business Model Innovation', 'Transformation Roadmap']
+    deliverables: ['Business Strategy & Transformation Roadmap', 'Business Model Innovation', 'Strategic Market Positioning']
   },
   {
     step: '02',
     title: 'Design',
     summary: 'Customer experience, service design, and digital products.',
-    description: 'We architect human-centered customer journeys, frictionless digital product interfaces, brand identities, and enterprise design systems.',
+    description: 'We architect human-centered customer experiences, service design blueprints, frictionless digital products, and brand experience systems.',
     icon: 'Palette',
-    deliverables: ['CX & Service Design', 'UI/UX Product Architecture', 'Brand Experience & Systems']
+    deliverables: ['Customer Experience (CX) & Service Design', 'Digital Product UI/UX Architecture', 'Brand Experience & Design Systems']
   },
   {
     step: '03',
     title: 'Build',
     summary: 'Applications, enterprise platforms, cloud infrastructure, and AI solutions.',
-    description: 'We engineer high-performance web and mobile applications, resilient cloud architectures, custom APIs, and agentic enterprise AI integrations.',
+    description: 'We engineer high-performance applications, resilient cloud infrastructure, enterprise platforms, and agentic AI solutions built to scale.',
     icon: 'Cpu',
-    deliverables: ['Cloud Infrastructure & Platforms', 'Full-Stack Software Development', 'Generative AI & LLM Systems']
+    deliverables: ['Full-Stack Web & Mobile Applications', 'Enterprise Platforms & Cloud Infrastructure', 'Custom AI & Agentic Solutions']
   },
   {
     step: '04',
     title: 'Launch',
     summary: 'Marketing, commerce, customer engagement, and go-to-market execution.',
-    description: 'We execute omnichannel growth campaigns, deploy modern digital commerce engines, optimize funnel conversion, and orchestrate market launches.',
+    description: 'We execute targeted marketing campaigns, deploy digital commerce engines, optimize customer engagement, and orchestrate seamless go-to-market execution.',
     icon: 'Rocket',
-    deliverables: ['Omnichannel GTM Execution', 'Digital Commerce Platforms', 'Customer Engagement Engines']
+    deliverables: ['Go-To-Market (GTM) Execution', 'Digital Commerce Engines', 'Customer Engagement Operations']
   },
   {
     step: '05',
     title: 'Scale',
     summary: 'Analytics, optimization, organizational change, and continuous innovation.',
-    description: 'We establish real-time data telemetry, optimize operational performance, drive culture & change management, and foster continuous enterprise innovation.',
+    description: 'We establish advanced analytics telemetry, drive operational optimization, foster organizational change, and power continuous innovation.',
     icon: 'TrendingUp',
-    deliverables: ['Real-Time Data Telemetry & CDP', 'Organizational Change Management', 'Continuous Optimization Engine']
+    deliverables: ['Advanced Analytics Telemetry', 'Organizational Change Management', 'Continuous Optimization & Innovation']
   }
 ];
 
 export const CORE_VALUES = [
   {
-    title: 'Strategic Foresight',
-    description: 'Constructing resilient corporate strategies, market entry blueprints, and experience transformation roadmaps.',
+    title: 'Strategy & Innovation',
+    description: 'Crafting defensible business strategies, market entry blueprints, and transformation roadmaps that drive long-term value.',
     icon: 'Compass',
   },
   {
-    title: 'Creative Excellence',
-    description: 'Designing human-centered customer experiences, brand identities, and immersive digital interfaces that resonate.',
+    title: 'Creativity & Design',
+    description: 'Designing human-centered customer experiences, service design frameworks, and digital products that build deep brand equity.',
     icon: 'Palette',
   },
   {
-    title: 'Technological Mastery',
-    description: 'Building modern cloud architectures, robust digital products, and high-performance enterprise platforms.',
+    title: 'Tech & Engineering',
+    description: 'Engineering robust cloud infrastructure, enterprise platforms, and high-performance digital applications.',
     icon: 'Cpu',
   },
   {
-    title: 'Data & AI Intelligence',
-    description: 'Unlocking growth through predictive data analytics, customer data platforms, and agentic generative AI workflows.',
+    title: 'Data & AI Outcomes',
+    description: 'Unlocking growth through real-time analytics, customer data platforms, and agentic generative AI automation.',
     icon: 'Sparkles',
   }
 ];
