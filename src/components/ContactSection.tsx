@@ -214,10 +214,10 @@ export default function ContactSection() {
                       SECURE INBOX
                     </span>
                     <a 
-                      href="mailto:info@dubeyconglomerate.com" 
+                      href="mailto:email@dubeyconglomerate.com" 
                       className="text-xs sm:text-sm text-[#D4AF37] hover:text-[#D4AF37]/80 font-bold block transition-colors mt-0.5"
                     >
-                      info@dubeyconglomerate.com
+                      email@dubeyconglomerate.com
                     </a>
                   </div>
                 </div>

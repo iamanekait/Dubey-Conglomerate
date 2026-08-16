@@ -126,8 +126,8 @@ export default function Footer({ onOpenBooking, onOpenAssessment }: FooterProps)
               </li>
               <li className="flex items-center space-x-2.5">
                 <Mail className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />
-                <a href="mailto:info@dubeyconglomerate.com" className="text-white/80 hover:text-[#D4AF37] transition-all">
-                  info@dubeyconglomerate.com
+                <a href="mailto:email@dubeyconglomerate.com" className="text-white/80 hover:text-[#D4AF37] transition-all">
+                  email@dubeyconglomerate.com
                 </a>
               </li>
               <li className="flex items-center space-x-2.5">
