@@ -114,10 +114,12 @@ export default function App() {
       </main>
 
       {/* Section 8: Confidential Ledger Footer */}
-      <Footer 
-        onOpenBooking={() => handleOpenBooking()} 
-        onOpenAssessment={handleOpenAssessment} 
-      />
+      <ScrollFadeSection>
+        <Footer 
+          onOpenBooking={() => handleOpenBooking()} 
+          onOpenAssessment={handleOpenAssessment} 
+        />
+      </ScrollFadeSection>
 
       {/* Persistent Consultation Booking Overlay Modal */}
       <ConsultationModal

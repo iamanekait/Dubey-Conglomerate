@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface ScrollFadeSectionProps {
   children: ReactNode;
@@ -14,17 +14,19 @@ export default function ScrollFadeSection({
   className = '', 
   delay = 0 
 }: ScrollFadeSectionProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
       id={id}
       className={className}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-120px" }}
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1, margin: "0px 0px -60px 0px" }}
       transition={{ 
-        duration: 0.9, 
+        duration: 0.85, 
         delay,
-        ease: [0.16, 1, 0.3, 1] // Custom premium cubic-bezier for high-fidelity ease-out
+        ease: [0.16, 1, 0.3, 1] // Custom premium cubic-bezier for smooth high-fidelity ease-out
       }}
     >
       {children}
