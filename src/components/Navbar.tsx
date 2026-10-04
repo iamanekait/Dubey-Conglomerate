@@ -27,10 +27,21 @@ export default function Navbar({ onOpenBooking, onOpenAssessment }: NavbarProps)
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile drawer on route change
+  // Close mobile drawer on route change & handle body scroll lock
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const menuItems = [
     { label: 'Home', path: '/' },
@@ -85,14 +96,14 @@ export default function Navbar({ onOpenBooking, onOpenAssessment }: NavbarProps)
               </Link>
 
               {/* Desktop Navigation Link Block */}
-              <div className="hidden lg:flex items-center space-x-5 xl:space-x-6">
+              <div className="hidden lg:flex items-center space-x-3 xl:space-x-5">
                 {menuItems.map((item) => {
                   const active = isActive(item.path);
                   return (
                     <Link
                       key={item.label}
                       to={item.path}
-                      className={`text-xs uppercase tracking-wider py-1 relative transition-colors duration-200 ${
+                      className={`text-[11px] xl:text-xs uppercase tracking-wider py-1 relative transition-colors duration-200 ${
                         active
                           ? 'text-[#D4AF37] font-bold'
                           : 'text-white/70 hover:text-white font-medium'
@@ -151,9 +162,9 @@ export default function Navbar({ onOpenBooking, onOpenAssessment }: NavbarProps)
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[60px] z-35 bg-[#0d1627]/98 backdrop-blur-2xl border-b border-white/10 lg:hidden flex flex-col px-6 py-8 space-y-6 overflow-y-auto"
+            className="fixed inset-0 top-[56px] sm:top-[64px] z-50 bg-[#0d1627]/98 backdrop-blur-2xl border-b border-white/10 lg:hidden flex flex-col px-6 py-6 space-y-6 overflow-y-auto pb-[calc(4rem+env(safe-area-inset-bottom,0px))]"
           >
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-2">
               <span className="text-[10px] uppercase tracking-widest text-[#D4AF37] font-mono font-bold border-b border-white/10 pb-2">
                 PORTAL DIRECTORY
               </span>
@@ -164,7 +175,7 @@ export default function Navbar({ onOpenBooking, onOpenAssessment }: NavbarProps)
                     key={item.label}
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className={`text-lg font-display py-2 px-3 rounded-lg transition-all duration-150 flex items-center justify-between ${
+                    className={`text-base sm:text-lg font-display min-h-[44px] py-2.5 px-3.5 rounded-xl transition-all duration-150 flex items-center justify-between ${
                       active
                         ? 'text-[#D4AF37] bg-white/10 font-bold border-l-2 border-[#D4AF37]'
                         : 'text-white/80 hover:text-white hover:bg-white/5'

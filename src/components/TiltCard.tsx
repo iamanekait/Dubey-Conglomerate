@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -13,8 +13,22 @@ export default function TiltCard({ children, className = "", ...props }: TiltCar
   const [rotateY, setRotateY] = useState(0);
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
   const [isHovered, setIsHovered] = useState(false);
+  const [canHover, setCanHover] = useState(true);
+  const prefersReduced = useReducedMotion();
+
+  useEffect(() => {
+    // Only enable 3D tilt tracking if device actually supports fine pointer hover (desktops/laptops with mouse/trackpad)
+    if (typeof window !== 'undefined') {
+      const media = window.matchMedia('(hover: hover) and (pointer: fine)');
+      setCanHover(media.matches);
+      const listener = (e: MediaQueryListEvent) => setCanHover(e.matches);
+      media.addEventListener('change', listener);
+      return () => media.removeEventListener('change', listener);
+    }
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canHover || prefersReduced) return;
     const card = cardRef.current;
     if (!card) return;
 
@@ -38,7 +52,9 @@ export default function TiltCard({ children, className = "", ...props }: TiltCar
   };
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (canHover && !prefersReduced) {
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -54,35 +70,34 @@ export default function TiltCard({ children, className = "", ...props }: TiltCar
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       animate={{
-        rotateX: rotateX,
-        rotateY: rotateY,
+        rotateX: canHover && !prefersReduced ? rotateX : 0,
+        rotateY: canHover && !prefersReduced ? rotateY : 0,
         transformPerspective: 1000,
       }}
-      whileHover={{
-        scale: 1.025,
+      whileHover={canHover && !prefersReduced ? {
+        scale: 1.02,
         borderColor: 'rgba(212, 175, 55, 0.4)',
         boxShadow: '0 20px 40px -15px rgba(212, 175, 55, 0.35)',
-      }}
+      } : undefined}
       transition={{ type: 'spring', stiffness: 300, damping: 20, mass: 0.6 }}
       style={{
-        transformStyle: 'preserve-3d',
+        transformStyle: canHover ? 'preserve-3d' : 'flat',
       }}
       className={`relative group ${className}`}
       {...props}
     >
-      {/* Premium Spotlight Glare Overlay to simulate shiny physical texture */}
-      <div 
-        className="absolute inset-0 pointer-events-none rounded-[inherit] transition-opacity duration-300 z-10"
-        style={{
-          opacity: isHovered ? 0.15 : 0,
-          background: `radial-gradient(circle 180px at ${glarePos.x}% ${glarePos.y}%, rgba(212, 175, 55, 0.35), transparent)`,
-        }}
-      />
+      {/* Spotlight Glare Overlay to simulate shiny physical texture on fine pointers */}
+      {canHover && !prefersReduced && (
+        <div 
+          className="absolute inset-0 pointer-events-none rounded-[inherit] transition-opacity duration-300 z-10"
+          style={{
+            opacity: isHovered ? 0.15 : 0,
+            background: `radial-gradient(circle 180px at ${glarePos.x}% ${glarePos.y}%, rgba(212, 175, 55, 0.35), transparent)`,
+          }}
+        />
+      )}
       
-      {/* 3D depth translator */}
-      <div style={{ transform: 'translateZ(15px)', transformStyle: 'preserve-3d' }} className="h-full flex flex-col justify-between">
-        {children}
-      </div>
+      {children}
     </motion.div>
   );
 }

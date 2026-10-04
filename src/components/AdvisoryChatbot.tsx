@@ -144,7 +144,7 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 z-40 bg-gradient-to-tr from-[#9B2C2C] via-corp-navy-900 to-[#D4AF37] text-white p-4 rounded-full shadow-2xl hover:shadow-[#D4AF37]/20 border border-white/20 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center group"
+            className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] right-4 sm:bottom-6 sm:right-6 z-40 bg-gradient-to-tr from-[#9B2C2C] via-corp-navy-900 to-[#D4AF37] text-white p-3.5 sm:p-4 rounded-full shadow-2xl hover:shadow-[#D4AF37]/20 border border-white/20 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center group"
             aria-label="Open AI Strategy Advisor"
           >
             <div className="absolute inset-0 rounded-full bg-[#D4AF37]/10 animate-ping group-hover:animate-none pointer-events-none" />
@@ -163,11 +163,11 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
               opacity: 1, 
               y: 0, 
               scale: 1,
-              height: isMinimized ? '48px' : '520px'
+              height: isMinimized ? '48px' : 'min(520px, calc(100dvh - 5.5rem))'
             }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-6 right-6 z-50 w-[92vw] sm:w-[380px] bg-[#050B18]/95 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden flex flex-col glass-panel-glow"
+            className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[380px] max-w-[420px] max-h-[calc(100dvh-5rem)] bg-[#050B18]/95 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden flex flex-col glass-panel-glow"
           >
             {/* Elegant Header Banner */}
             <div className="bg-gradient-to-r from-corp-navy-950 via-corp-navy-900 to-[#D4AF37]/25 p-3.5 border-b border-white/10 flex items-center justify-between">
@@ -316,7 +316,7 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
                     onChange={(e) => setMessageInput(e.target.value)}
                     placeholder="Inquire about corporate integrations..."
                     disabled={isLoading}
-                    className="flex-grow bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all disabled:opacity-50"
+                    className="flex-grow bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-base sm:text-xs text-white focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all disabled:opacity-50"
                   />
                   
                   {/* Send Button */}

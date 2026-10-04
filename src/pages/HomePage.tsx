@@ -151,7 +151,7 @@ export default function HomePage({ onOpenBooking, onOpenAssessment }: HomePagePr
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-8">
               {lifecycleStages.map((stage, idx) => (
                 <div 
                   key={stage.name}
@@ -189,7 +189,7 @@ export default function HomePage({ onOpenBooking, onOpenAssessment }: HomePagePr
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {portals.map((portal) => {
                 const Icon = portal.icon;
                 return (

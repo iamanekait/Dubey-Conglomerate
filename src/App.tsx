@@ -49,7 +49,7 @@ function AppContent() {
       {/* High-fidelity Strategic Preloader */}
       <Preloader onComplete={() => setIsLoading(false)} />
 
-      <div className="relative min-h-screen bg-corp-navy-950 text-white flex flex-col antialiased overflow-x-hidden">
+      <div className="relative min-h-[100dvh] bg-corp-navy-950 text-white flex flex-col antialiased overflow-x-hidden">
         {/* Scroll Progress Indicator Bar */}
         <ScrollProgressBar />
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { ShieldCheck, Cpu, Database, Compass, Award } from 'lucide-react';
 import faviconDark from '../assets/images/favicon_dark_1781929946198.jpg';
 
@@ -19,6 +19,20 @@ export default function Preloader({ onComplete }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
   const [msgIndex, setMsgIndex] = useState(0);
   const [show, setShow] = useState(true);
+  const prefersReduced = useReducedMotion();
+
+  // If user prefers reduced motion, complete immediately
+  useEffect(() => {
+    if (prefersReduced) {
+      setShow(false);
+      onComplete();
+    }
+  }, [prefersReduced, onComplete]);
+
+  const handleSkip = () => {
+    setShow(false);
+    onComplete();
+  };
 
   // Counter animation simulation
   useEffect(() => {
@@ -66,7 +80,9 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[9999] bg-[#050B18] flex flex-col items-center justify-center p-6 select-none overflow-hidden"
+          onClick={handleSkip}
+          className="fixed inset-0 z-[9999] bg-[#050B18] flex flex-col items-center justify-center p-6 select-none overflow-hidden cursor-pointer"
+          title="Click to enter immediately"
         >
           {/* Ambient Cosmic Orbs */}
           <div className="absolute top-[20%] left-[10%] w-[350px] h-[350px] bg-corp-gold-500/5 blur-[120px] rounded-full pointer-events-none" />

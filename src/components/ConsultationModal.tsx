@@ -125,8 +125,8 @@ export default function ConsultationModal({
   ];
 
   return (
-    <div className="fixed inset-0 bg-[#050B18]/70 backdrop-blur-md flex items-center justify-center p-4 z-50 overflow-y-auto">
-      <div className="backdrop-blur-2xl bg-[#0b1220]/90 border border-white/20 w-full max-w-xl max-h-[92vh] sm:max-h-[85vh] flex flex-col overflow-hidden shadow-2xl rounded-3xl relative my-auto animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 bg-[#050B18]/70 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 z-50 overflow-y-auto pt-[max(0.75rem,env(safe-area-inset-top,0px))] pb-[max(0.75rem,env(safe-area-inset-bottom,0px))]">
+      <div className="backdrop-blur-2xl bg-[#0b1220]/90 border border-white/20 w-full max-w-xl max-h-[92dvh] sm:max-h-[85vh] flex flex-col overflow-hidden shadow-2xl rounded-3xl relative my-auto animate-in fade-in zoom-in-95 duration-200">
         
         {/* Modal Header */}
         <div className="bg-white/5 px-6 py-4 flex items-center justify-between text-white border-b border-white/10 flex-shrink-0">

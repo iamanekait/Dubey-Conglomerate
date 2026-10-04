@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, TouchEvent } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote, Building2, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { TESTIMONIALS } from '../data';
@@ -6,6 +6,7 @@ import { TESTIMONIALS } from '../data';
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
   const nextTestimonial = () => {
     setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
@@ -13,6 +14,22 @@ export default function Testimonials() {
 
   const prevTestimonial = () => {
     setActiveIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+  };
+
+  const handleTouchStart = (e: TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (diff > 50) {
+      nextTestimonial();
+    } else if (diff < -50) {
+      prevTestimonial();
+    }
+    setTouchStart(null);
   };
 
   // Autoplay loop
@@ -62,7 +79,9 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl shadow-xl p-8 sm:p-12 overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl shadow-xl p-6 sm:p-12 overflow-hidden select-none"
         >
           
           {/* Decorative Giant Quote Accent */}

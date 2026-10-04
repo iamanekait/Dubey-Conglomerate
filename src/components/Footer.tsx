@@ -10,7 +10,7 @@ interface FooterProps {
 
 export default function Footer({ onOpenBooking }: FooterProps) {
   return (
-    <footer className="backdrop-blur-xl bg-white/5 text-white pt-16 pb-12 border-t border-white/10 overflow-hidden relative">
+    <footer className="backdrop-blur-xl bg-white/5 text-white pt-16 pb-12 border-t border-white/10 overflow-hidden relative pb-[calc(3rem+env(safe-area-inset-bottom,0px))]">
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#D4AF37]/40 via-[#D4AF37] to-[#D4AF37]/40" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -95,7 +95,7 @@ export default function Footer({ onOpenBooking }: FooterProps) {
               </li>
               <li className="flex items-center space-x-2.5">
                 <Mail className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />
-                <a href="mailto:email@dubeyconglomerate.com" className="text-white/80 hover:text-[#D4AF37] transition-all">
+                <a href="mailto:email@dubeyconglomerate.com" className="text-white/80 hover:text-[#D4AF37] transition-all break-all sm:break-normal">
                   email@dubeyconglomerate.com
                 </a>
               </li>

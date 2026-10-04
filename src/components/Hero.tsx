@@ -55,7 +55,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen pt-24 lg:pt-32 pb-16 flex flex-col justify-center bg-corp-navy-950 text-white overflow-hidden"
+      className="relative min-h-[100dvh] pt-24 sm:pt-28 lg:pt-32 pb-16 flex flex-col justify-center bg-corp-navy-950 text-white overflow-hidden"
     >
       {/* Immersive Background Media (Supporting video & image) */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
@@ -124,7 +124,7 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
               variants={itemVariants}
               className="space-y-4 flex flex-col items-center"
             >
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
+              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] text-white">
                 Reimagining How Organizations
                 <span className="block mt-2 bg-gradient-to-r from-corp-gold-300 via-corp-gold-400 to-corp-gold-500 bg-clip-text text-transparent">
                   Operate, Engage & Create Value

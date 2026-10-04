@@ -130,7 +130,7 @@ export default function ServicesSection({ onOpenBooking }: ServicesProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-4 items-center gap-1.5 sm:gap-2 mb-8 mx-auto backdrop-blur-md bg-white/5 p-1.5 rounded-2xl border border-white/10 w-full max-w-4xl"
+          className="grid grid-cols-2 sm:grid-cols-4 items-center gap-2 mb-8 mx-auto backdrop-blur-md bg-white/5 p-1.5 rounded-2xl border border-white/10 w-full max-w-4xl"
         >
           {[
             { id: 'all', label: 'All Portfolios' },
@@ -317,7 +317,7 @@ export default function ServicesSection({ onOpenBooking }: ServicesProps) {
               </h4>
             </div>
 
-            <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+            <div className="p-6 sm:p-8 space-y-6 max-h-[75dvh] sm:max-h-[65vh] overflow-y-auto">
               <div className="space-y-3">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#D4AF37] font-bold block">
                   PROGRAM SYNOPSIS
