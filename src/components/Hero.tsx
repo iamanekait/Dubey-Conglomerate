@@ -1,5 +1,6 @@
 import { ArrowRight, BarChart3, ShieldCheck, Trophy, Sparkles, Compass, Palette, Cpu, Database } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { METRICS } from '../data';
 
 const heroBg = 'https://owky9a9x58ejfh0u.public.blob.vercel-storage.com/DC%20Intro.mp4';
@@ -147,12 +148,12 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
-              <button
-                onClick={() => handleScrollToSection('#services')}
-                className="flex items-center justify-center space-x-2 bg-transparent border-2 border-white/20 hover:border-[#D4AF37] hover:bg-white/5 text-white font-bold px-7 py-4 rounded-full text-xs uppercase tracking-widest transition-all cursor-pointer shadow-lg"
+              <Link
+                to="/capabilities"
+                className="flex items-center justify-center space-x-2 bg-transparent border-2 border-white/20 hover:border-[#D4AF37] hover:bg-white/5 text-white font-bold px-7 py-4 rounded text-xs uppercase tracking-widest transition-all cursor-pointer shadow-lg"
               >
-                <span>Explore Services</span>
-              </button>
+                <span>Explore Capabilities</span>
+              </Link>
             </motion.div>
 
             {/* 5 Core Pillars Badge */}
