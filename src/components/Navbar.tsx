@@ -210,9 +210,15 @@ export default function Navbar({ onOpenBooking, onOpenAssessment }: NavbarProps)
               >
                 Schedule Private Consultation
               </button>
-              <div className="flex items-center justify-center space-x-2 text-xs text-white/50 pt-2 font-mono">
-                <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span>Primary Desk: Benachity, Durgapur</span>
+              <div className="flex flex-col items-center justify-center space-y-1 text-xs text-white/50 pt-2 font-mono">
+                <a
+                  href="tel:03434041193"
+                  className="flex items-center space-x-2 text-white/80 hover:text-[#D4AF37] transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>Central Desk: 03434041193</span>
+                </a>
+                <span className="text-[10px] text-white/40">Benachity, Durgapur</span>
               </div>
             </div>
           </motion.div>

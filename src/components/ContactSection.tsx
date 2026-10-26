@@ -204,6 +204,27 @@ export default function ContactSection() {
                   </div>
                 </div>
 
+                {/* Direct Phone Registry */}
+                <div className="flex items-start space-x-3.5">
+                  <div className="p-2.5 rounded-xl bg-white/10 border border-white/25 text-[#D4AF37] mt-1 flex-shrink-0">
+                    <PhoneCall className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="block text-[10px] uppercase font-mono tracking-wider text-white/40">
+                      CENTRAL TELEPHONE DESK
+                    </span>
+                    <a 
+                      href="tel:03434041193" 
+                      className="text-xs sm:text-sm text-white hover:text-[#D4AF37] font-bold font-mono block transition-colors mt-0.5 tracking-wide"
+                    >
+                      03434041193
+                    </a>
+                    <span className="block text-[10px] text-white/50 font-light mt-0.5">
+                      Direct Line • Durgapur STD Code (0343)
+                    </span>
+                  </div>
+                </div>
+
                 {/* Email Registry */}
                 <div className="flex items-start space-x-3.5">
                   <div className="p-2.5 rounded-xl bg-white/10 border border-white/25 text-[#D4AF37] mt-1 flex-shrink-0">
@@ -211,7 +232,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <span className="block text-[10px] uppercase font-mono tracking-wider text-white/40">
-                      SECURE INBOX
+                      SECURE INBOX & COMMUNICATIONS
                     </span>
                     <a 
                       href="mailto:email@dubeyconglomerate.com" 
@@ -219,6 +240,9 @@ export default function ContactSection() {
                     >
                       email@dubeyconglomerate.com
                     </a>
+                    <span className="block text-[10px] text-white/50 font-light mt-0.5">
+                      Direct Executive Routing
+                    </span>
                   </div>
                 </div>
 
@@ -390,12 +414,12 @@ export default function ContactSection() {
                     <input
                       id="form-phone"
                       type="tel"
-                      placeholder="e.g. 9434012345"
+                      placeholder="e.g. 03434041193 or +91 9876543210"
                       {...register('phone', {
                         required: 'Primary Contact Number is required',
                         pattern: {
                           value: /^[+0-9\s()-.]{7,20}$/,
-                          message: 'Provide a valid phone structure (e.g. 9434012345)'
+                          message: 'Provide a valid phone structure (e.g. 03434041193)'
                         }
                       })}
                       className={`w-full bg-white/5 border ${
@@ -500,9 +524,7 @@ export default function ContactSection() {
                     Transmittal Protocol Confirmed
                   </h4>
                   <p className="text-xs text-white/70 max-w-md mx-auto leading-relaxed font-light">
-                    Your brief for <strong>{submittedData?.company}</strong> has been transmitted to our secure desk files. 
-                    An advisor will evaluate the metrics and reach out to your team at <strong>{submittedData?.email}</strong> 
-                    within one standard regional business day.
+                    Your brief for <strong>{submittedData?.company}</strong> has been transmitted to our secure desk and dispatched directly to executive leadership at <strong>email@dubeyconglomerate.com</strong>. An executive advisor will evaluate the metrics and reach out to your team at <strong>{submittedData?.email}</strong> within one standard regional business day.
                   </p>
                 </div>
 

@@ -46,12 +46,13 @@ export default function SEO({
           '@type': 'Person',
           'name': 'Aniket Dubey',
           'jobTitle': 'Founder & Principal Executive',
-          'email': 'aniketdubey.2012@gmail.com'
+          'email': 'email@dubeyconglomerate.com'
         },
         'contactPoint': [
           {
             '@type': 'ContactPoint',
             'contactType': 'consulting & advisory inquiry',
+            'telephone': '+91-343-4041193',
             'email': 'email@dubeyconglomerate.com',
             'availableLanguage': ['English', 'Hindi', 'Bengali'],
             'areaServed': 'Worldwide'
@@ -77,6 +78,7 @@ export default function SEO({
         'parentOrganization': { '@id': `${origin}/#organization` },
         'url': canonicalUrl,
         'image': defaultOgImage,
+        'telephone': '03434041193',
         'email': 'email@dubeyconglomerate.com',
         'priceRange': '$$$$',
         'currenciesAccepted': 'INR, USD, EUR, GBP',

@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { X, Calendar, Clock, AlertCircle, CheckCircle, Shield, ArrowRight, Loader2 } from 'lucide-react';
+import { X, Calendar, Clock, AlertCircle, CheckCircle, Shield, ArrowRight, Loader2, PhoneCall } from 'lucide-react';
 import { SERVICES } from '../data';
 import { safeStorage } from '../utils/storage';
 
@@ -233,7 +233,7 @@ export default function ConsultationModal({
                   <input
                     id="modal-phone"
                     type="tel"
-                    placeholder="e.g. 9434012345"
+                    placeholder="e.g. 03434041193 or +91 9876543210"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     className="w-full bg-white/5 border border-white/10 focus:border-[#D4AF37] focus:outline-none rounded-xl p-2.5 text-xs text-white placeholder-white/20 transition-colors"
@@ -347,6 +347,13 @@ export default function ConsultationModal({
                   </>
                 )}
               </button>
+            </div>
+
+            {/* Quick Direct Desk Contact */}
+            <div className="text-center pt-1 font-mono text-[10px] text-white/50 flex items-center justify-center space-x-1.5">
+              <PhoneCall className="w-3 h-3 text-[#D4AF37]" />
+              <span>Need immediate assistance? Central Desk:</span>
+              <a href="tel:03434041193" className="text-[#D4AF37] hover:underline font-bold">03434041193</a>
             </div>
 
           </form>

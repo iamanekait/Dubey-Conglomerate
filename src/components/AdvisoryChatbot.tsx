@@ -91,7 +91,7 @@ export default function AdvisoryChatbot({ onOpenBooking }: ChatbotProps) {
       
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "I apologize, but our advisory telemetry channel is temporarily unavailable. This usually happens if the Gemini API key is not yet configured in Settings > Secrets. You may click 'Schedule a consultation' directly to connect with our human analysts.",
+        content: "I apologize, but our advisory telemetry channel is temporarily unavailable. This usually happens if the Gemini API key is not yet configured in Settings > Secrets. You may click 'Schedule a consultation' directly or call our Central Desk at 03434041193 to connect with our human advisory team.",
         timestamp: new Date()
       }]);
     } finally {

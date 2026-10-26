@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Mail, ShieldCheck } from 'lucide-react';
+import { MapPin, Mail, ShieldCheck, PhoneCall } from 'lucide-react';
 import faviconDark from '../assets/images/favicon_dark_1781929946198.jpg';
 import LazyImage from './LazyImage';
 
@@ -92,6 +92,16 @@ export default function Footer({ onOpenBooking }: FooterProps) {
               <li className="flex items-start space-x-2.5">
                 <MapPin className="w-4 h-4 text-[#D4AF37] mt-0.5 flex-shrink-0" />
                 <span className="font-light text-white/80">Benachity, Durgapur, West Bengal, India</span>
+              </li>
+              <li className="flex items-center space-x-2.5">
+                <PhoneCall className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />
+                <a 
+                  href="tel:03434041193" 
+                  className="text-white/80 hover:text-[#D4AF37] transition-all font-mono font-medium tracking-wide"
+                >
+                  03434041193
+                </a>
+                <span className="text-[10px] text-white/40 font-mono">(Direct Desk)</span>
               </li>
               <li className="flex items-center space-x-2.5">
                 <Mail className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />

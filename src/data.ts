@@ -244,3 +244,19 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
     ]
   }
 ];
+
+export const CONTACT_INFO = {
+  phone: '03434041193',
+  formattedPhone: '0343-4041193',
+  internationalPhone: '+91 343 4041193',
+  telHref: 'tel:03434041193',
+  email: 'email@dubeyconglomerate.com',
+  address: {
+    quarter: 'Benachity Commercial Quarter',
+    locality: 'Benachity, Durgapur',
+    region: 'West Bengal',
+    postalCode: '713213',
+    country: 'India'
+  },
+  operatingHours: 'Monday — Friday: 09:30 AM to 06:30 PM (IST)'
+};

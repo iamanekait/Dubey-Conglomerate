@@ -54,7 +54,7 @@ DC's core capabilities include:
 Approach: Strategy, Creativity, Tech, Data, and AI.
 Always respond with professional poise, executive precision, and elegant business clarity. 
 Keep your answers brief, engaging, strategic, and direct. Use bullet points for structured recommendations, but keep total length under 150 words.
-Address the user as a respected client, and if relevant, kindly guide them to "Book a Consultation" or use our interactive diagnostic scanner.`;
+Address the user as a respected client, and if relevant, kindly guide them to "Book a Consultation", contact our Central Desk at 03434041193, or use our interactive diagnostic scanner.`;
 
       const formattedHistory = (history || []).map((h: { role: string; content: string }) => ({
         role: h.role === "assistant" ? "model" : h.role,
@@ -90,7 +90,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "B
     const userStr = process.env.SMTP_USER ? String(process.env.SMTP_USER).trim() : "";
     const passStr = process.env.SMTP_PASS ? String(process.env.SMTP_PASS).trim() : "";
 
-    const destinations = "aniketdubey.2012@gmail.com";
+    const destinations = "email@dubeyconglomerate.com, aniketdubey.2012@gmail.com";
     console.log(`[Email System] Preparing to dispatch notification: "${subject}" to ${destinations}`);
 
     const hasSMTP = userStr && passStr && 
@@ -142,7 +142,7 @@ Address the user as a respected client, and if relevant, kindly guide them to "B
     }
   }
 
-  // API Route for submitting booking/inquiry forms and sending email coordinates to aniketdubey.2012@gmail.com
+  // API Route for submitting booking/inquiry forms and sending email coordinates to email@dubeyconglomerate.com and aniketdubey.2012@gmail.com
   app.post("/api/submit-form", async (req, res) => {
     try {
       const body = req.body || {};
