@@ -246,10 +246,10 @@ export const DIAGNOSTIC_QUESTIONS: DiagnosticQuestion[] = [
 ];
 
 export const CONTACT_INFO = {
-  phone: '03434041193',
-  formattedPhone: '0343-4041193',
-  internationalPhone: '+91 343 4041193',
-  telHref: 'tel:03434041193',
+  phone: '+91 9932979875',
+  formattedPhone: '+91 99329 79875',
+  internationalPhone: '+91 99329 79875',
+  telHref: 'tel:+919932979875',
   email: 'email@dubeyconglomerate.com',
   address: {
     quarter: 'Benachity Commercial Quarter',
@@ -258,5 +258,5 @@ export const CONTACT_INFO = {
     postalCode: '713213',
     country: 'India'
   },
-  operatingHours: 'Monday — Friday: 09:30 AM to 06:30 PM (IST)'
+  operatingHours: 'Monday — Friday: 09:00 AM to 05:00 PM (IST)'
 };

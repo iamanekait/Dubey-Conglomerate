@@ -96,10 +96,10 @@ export default function Footer({ onOpenBooking }: FooterProps) {
               <li className="flex items-center space-x-2.5">
                 <PhoneCall className="w-4 h-4 text-[#D4AF37] flex-shrink-0" />
                 <a 
-                  href="tel:03434041193" 
+                  href="tel:+919932979875" 
                   className="text-white/80 hover:text-[#D4AF37] transition-all font-mono font-medium tracking-wide"
                 >
-                  03434041193
+                  +91 9932979875
                 </a>
                 <span className="text-[10px] text-white/40 font-mono">(Direct Desk)</span>
               </li>

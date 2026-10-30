@@ -117,11 +117,11 @@ export default function ConsultationModal({
   };
 
   const timeSlots = [
-    '10:00 AM - 11:30 AM (IST)',
-    '11:30 AM - 01:00 PM (IST)',
-    '02:00 PM - 03:30 PM (IST)',
-    '03:30 PM - 05:00 PM (IST)',
-    '05:00 PM - 06:30 PM (IST)',
+    '09:00 AM - 10:30 AM (IST)',
+    '10:30 AM - 12:00 PM (IST)',
+    '01:00 PM - 02:30 PM (IST)',
+    '02:30 PM - 04:00 PM (IST)',
+    '04:00 PM - 05:00 PM (IST)',
   ];
 
   return (
@@ -233,7 +233,7 @@ export default function ConsultationModal({
                   <input
                     id="modal-phone"
                     type="tel"
-                    placeholder="e.g. 03434041193 or +91 9876543210"
+                    placeholder="e.g. +91 9932979875"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                     className="w-full bg-white/5 border border-white/10 focus:border-[#D4AF37] focus:outline-none rounded-xl p-2.5 text-xs text-white placeholder-white/20 transition-colors"
@@ -353,7 +353,7 @@ export default function ConsultationModal({
             <div className="text-center pt-1 font-mono text-[10px] text-white/50 flex items-center justify-center space-x-1.5">
               <PhoneCall className="w-3 h-3 text-[#D4AF37]" />
               <span>Need immediate assistance? Central Desk:</span>
-              <a href="tel:03434041193" className="text-[#D4AF37] hover:underline font-bold">03434041193</a>
+              <a href="tel:+919932979875" className="text-[#D4AF37] hover:underline font-bold">+91 9932979875</a>
             </div>
 
           </form>

@@ -54,7 +54,7 @@ DC's core capabilities include:
 Approach: Strategy, Creativity, Tech, Data, and AI.
 Always respond with professional poise, executive precision, and elegant business clarity. 
 Keep your answers brief, engaging, strategic, and direct. Use bullet points for structured recommendations, but keep total length under 150 words.
-Address the user as a respected client, and if relevant, kindly guide them to "Book a Consultation", contact our Central Desk at 03434041193, or use our interactive diagnostic scanner.`;
+Address the user as a respected client, and if relevant, kindly guide them to "Book a Consultation", contact our Central Desk at +91 9932979875 (Operative Hours: Monday – Friday, 9:00 AM – 5:00 PM IST), or use our interactive diagnostic scanner.`;
 
       const formattedHistory = (history || []).map((h: { role: string; content: string }) => ({
         role: h.role === "assistant" ? "model" : h.role,

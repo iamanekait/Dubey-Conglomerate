@@ -78,7 +78,7 @@ export default function SEO({
         'parentOrganization': { '@id': `${origin}/#organization` },
         'url': canonicalUrl,
         'image': defaultOgImage,
-        'telephone': '03434041193',
+        'telephone': '+91 9932979875',
         'email': 'email@dubeyconglomerate.com',
         'priceRange': '$$$$',
         'currenciesAccepted': 'INR, USD, EUR, GBP',
@@ -102,7 +102,7 @@ export default function SEO({
             '@type': 'OpeningHoursSpecification',
             'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
             'opens': '09:00',
-            'closes': '18:00'
+            'closes': '17:00'
           }
         ],
         'areaServed': [

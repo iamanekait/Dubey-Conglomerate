@@ -214,13 +214,13 @@ export default function ContactSection() {
                       CENTRAL TELEPHONE DESK
                     </span>
                     <a 
-                      href="tel:03434041193" 
+                      href="tel:+919932979875" 
                       className="text-xs sm:text-sm text-white hover:text-[#D4AF37] font-bold font-mono block transition-colors mt-0.5 tracking-wide"
                     >
-                      03434041193
+                      +91 9932979875
                     </a>
                     <span className="block text-[10px] text-white/50 font-light mt-0.5">
-                      Direct Line • Durgapur STD Code (0343)
+                      Direct Line • Executive Telephony Bureau
                     </span>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export default function ContactSection() {
                       OPERATIVE HOURS
                     </span>
                     <span className="text-xs leading-relaxed text-white/70 block">
-                      Monday — Friday: 09:30 AM to 06:30 PM (IST)
+                      Monday — Friday: 09:00 AM to 05:00 PM (IST)
                     </span>
                     <span className="text-[10px] text-[#D4AF37] font-semibold block mt-0.5">
                       Online calendar booking system is active 24/7
@@ -414,12 +414,12 @@ export default function ContactSection() {
                     <input
                       id="form-phone"
                       type="tel"
-                      placeholder="e.g. 03434041193 or +91 9876543210"
+                      placeholder="e.g. +91 9932979875"
                       {...register('phone', {
                         required: 'Primary Contact Number is required',
                         pattern: {
                           value: /^[+0-9\s()-.]{7,20}$/,
-                          message: 'Provide a valid phone structure (e.g. 03434041193)'
+                          message: 'Provide a valid phone structure (e.g. +91 9932979875)'
                         }
                       })}
                       className={`w-full bg-white/5 border ${
