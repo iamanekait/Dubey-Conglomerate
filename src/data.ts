@@ -149,6 +149,14 @@ export const SERVICES: Service[] = [
 
 export const METRICS: MetricCard[] = [
   {
+    id: 'transformations',
+    value: '250',
+    prefix: '',
+    suffix: '+',
+    label: 'Transformations Delivered',
+    description: 'Empowering enterprises across strategy, creative design, technology, data, and artificial intelligence.'
+  },
+  {
     id: 'capital',
     value: '2,000',
     prefix: '₹',

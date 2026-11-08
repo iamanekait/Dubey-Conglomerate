@@ -110,7 +110,15 @@ export default function Hero({ onOpenBooking, onOpenAssessment }: HeroProps) {
             animate="visible"
             className="space-y-8 flex flex-col items-center w-full"
           >
-
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center space-x-2 bg-corp-navy-900 border border-corp-gold-500/20 px-3.5 py-1.5 rounded-full"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-corp-gold-400" />
+              <span className="text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.15em] text-corp-gold-300">
+                Experience Transformation Partner
+              </span>
+            </motion.div>
 
             <motion.div
               variants={itemVariants}
