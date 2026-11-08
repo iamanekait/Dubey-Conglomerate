@@ -11,7 +11,6 @@ import {
   ShieldCheck, 
   Building2, 
   Award, 
-  Mail,
   ChevronRight,
   TrendingUp,
   Layers,
@@ -80,15 +79,7 @@ export default function HomePage({ onOpenBooking, onOpenAssessment }: HomePagePr
       icon: Building2,
       desc: 'Verified endorsements and measurable business impact across high-value industrial enterprises.',
       action: 'View Client Stories'
-    },
-    {
-      title: 'Contact Central Desk',
-      path: '/contact',
-      badge: 'Encrypted Intake',
-      icon: Mail,
-      desc: 'Direct channels to our senior advisory board, official coordinates, and encrypted brief submission.',
-      action: 'Initiate Confidential Brief'
-    },
+    }
   ];
 
   const lifecycleStages = [
